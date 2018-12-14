@@ -1,0 +1,98 @@
+<!--pages/me/account/account.wxml-->
+<!-- <import src="../../navigation/navigation.wxml"/>
+<template is="navigation" data="{{navigation}}"></template> -->
+<view class="cell-container">
+  <view class="cell_br"></view>
+  <view class="account_cell cell_border_top">
+    <view class="account_cell_bd">头像</view>
+    <!-- <view class="account_cell_ct"></view> -->
+    <view class="cell_hd headPortrait">
+      <image src="{{headPortrait}}" style="width:50px;height:50px;border-radius:25px;"></image>
+    </view>
+  </view>
+  <!-- <view class="account_cell">
+    <block wx:if="{{account == '' || account == null}}">
+      <view class="cell_bd username">{{nickName}}</view>
+    </block>
+    <block wx:else>
+      <view class="cell_bd username">{{account.linkman}}</view>
+    </block>
+    <view class="cell_hd headPortrait">
+      <image src="{{headPortrait}}" style="width:50px;height:50px;border-radius:25px;"></image>
+    </view>
+  </view> -->
+  <block s-if="account == '' || account == null">
+    <view class="account_cell cell_border_top">
+      <view class="account_cell_bd">昵称</view>
+      <!-- <view class="account_cell_ct"></view> -->
+      <view class="account_cell_ft">{{nickName}}</view>
+    </view>
+  </block>
+  <block s-else>
+    <view class="account_cell cell_border_top" bindtap='accountEditClick' data-index='0' data-value='{{account.nickname}}'>
+      <view class="account_cell_bd">昵称</view>
+      <!-- <view class="account_cell_ct"></view> -->
+      <view class="account_cell_ft cell_ft_in_access">{{account.nickname}}</view>
+    </view>
+    <view class="account_cell cell_border_top" bindtap='accountEditClick' data-index='1' data-value='{{account.linkman}}'>
+      <view class="account_cell_bd">姓名</view>
+      <!-- <view class="account_cell_ct"></view> -->
+      <view class="account_cell_ft cell_ft_in_access">{{account.linkman}}</view>
+    </view>
+    <view class="account_cell cell_border_top">
+      <view class="account_cell_bd">用户名</view>
+      <!-- <view class="account_cell_ct"></view> -->
+      <view class="account_cell_ft">{{account.tel}}</view>
+    </view>
+    <view class="account_cell cell_border_top" bindtap='accountEditClick' data-index='2' data-value='{{account.email}}'>
+      <view class="account_cell_bd">邮箱</view>
+      <!-- <view class="account_cell_ct"></view> -->
+      <view class="account_cell_ft cell_ft_in_access">{{account.email}}<text>{{emaliIsValid}}</text></view>
+    </view>
+    <!-- <view class="account_cell cell_border_top">
+      <view class="account_cell_bd">手机</view>
+      <view class="account_cell_ft">{{account.tel}}</view>
+    </view>  -->
+    <view class="account_cell cell_border_top" bindtap='accountEditClick' data-index='3' data-value='{{account.qq}}'>
+      <view class="account_cell_bd">QQ</view>
+      <!-- <view class="account_cell_ct"></view> -->
+      <view class="account_cell_ft cell_ft_in_access">{{account.qq}}</view>
+    </view>
+    <view class="cell_br"></view>
+    <view class="cell_br"></view>
+    <view class="account_cell cell_border_top">
+      <view class="account_cell_bd">身份证号</view>
+      <!-- <view class="account_cell_ct"></view> -->
+      <view class="account_cell_ft">{{account.idcard}}</view>
+    </view>
+    <view class="account_cell cell_border_top" bindtap='accountEditClick' data-index='4' data-value='{{account.address}}'>
+      <view class="account_cell_bd">收件地址</view>
+      <!-- <view class="account_cell_ct"></view> -->
+      <view class="account_cell_ft cell_ft_in_access">{{account.address}}</view>
+    </view>
+  </block>
+
+  <view class="cell_br"></view>
+  <view class="cell_br"></view>
+  <view class="account_cell">
+    <view class="account_cell_bd">手机</view>
+    <block s-if="phone == '未填写'">
+      <view class="account_cell_ft cell_ft_in_access " bindtap="bindClick">绑定</view>
+    </block>
+    <block s-else>
+      <view class="account_cell_ft cell_ft_in_access" bindtap="unBindClick">{{phone}}<text>解绑</text></view>
+    </block>
+    
+    <!-- <block wx:if="{{phone == '未填写'}}">
+      <view class="account_cell_ft cell_ft_in_access phone" bindtap="bindClick">绑定</view>
+    </block>
+    <block wx:else>
+      <view class="account_cell_ft cell_ft_in_access phone" bindtap="unBindClick">
+      解绑
+      <view class="account_cell_ct">{{phone}}</view>
+      </view>
+      
+    </block> -->
+
+  </view>
+</view>

@@ -1,0 +1,72 @@
+/* pages/course/myorder/myorder.css */
+page {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.video_nav {
+  display: flex;
+}
+.video_tab {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  color: #797979;
+  font-size: 32rpx;
+  border-bottom: 1px solid #dcdcdc;
+  box-sizing: border-box;
+}
+
+.video_tab text {
+  display: block;
+  line-height: 40rpx;
+  margin-top: 20rpx;
+  font-size: 32rpx;
+  border-right: 1px solid #dcdcdc;
+}
+.action {
+  color: #279df7 !important;
+  border-bottom: 2px solid #279df7 !important;
+}
+.swiper{
+  height: 100%;
+}
+.swiper swiper-item{
+  height: 100%;
+  overflow-y: auto !important;
+}
+.myorder_wrap {
+  width: 100%;
+  overflow: hidden;
+}
+.myorder_con{
+  width: 710rpx;
+  overflow: hidden;
+  font-size: 26rpx;
+  color: #797979;
+  margin: 40rpx 20rpx;
+  border-bottom: 1rpx #efefef solid;
+}
+.order_no{
+  width: 710rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+.order_cell{
+  width: 100%;
+  margin: 0 auto;
+  float: left;
+}
+.order_left{
+  width: 80%;
+  float: left;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+.order_right{
+  width: 20%;
+  float: left;
+  height: 50rpx;
+  line-height: 50rpx;
+}

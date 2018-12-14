@@ -1,0 +1,58 @@
+<!--video.wxml-->
+<!-- <import src="../navigation/navigation.wxml"/>
+<template is="navigation" data="{{navigation}}"></template> -->
+<import src="../nav/nav.swan" />
+<template is="nav" data="{{{nav}}}"></template> 
+<view style='height:5rpx;width:100%;'></view>
+<view class="video_wrap">
+  <video id="home_video" src="{{videoUrl}}" bindplay='startPlay' bindpause="pausePlay" bindended='endPlay' autoplay='false' objectFit='cover' binderror="listenerVideo" controls></video>
+</view>
+<view class='video_nav'>
+  <!-- <view class='video_tab video_tab_action'> -->
+  <view class='video_tab'>
+    <text>列表</text>
+  </view>
+  <!-- <view class='video_tab'>讲义</view> -->
+</view>
+<view class='video_content_wrap'>
+  <view class='video_listwrap'>
+    <block s-key="fst" s-for="fst, fstindex in knowpointList.fst">
+      <!-- <block wx:if="{{fst.icon == 1}}">
+      </block> -->
+
+      <!--章列表-->
+      <view class='video_list'>
+        <!--章名字-->
+        <view class='video_tit' bindtap='firstNodeClick' data-index='{{fstindex}}'>
+          <text>{{fst.name}}</text>
+          <image mode='widthFix' src='{{fst.show == true?arrow_down:arrow_up}}'></image>
+        </view>
+        <!--节列表-->
+        <view class='video_content' hidden='{{fst.show}}'>
+          <view class='video_jie_list'>
+            <block s-key="snd" s-for="snd, sndindex in fst.snd">
+              <!--节名字-->
+              <view class='video_jie_tit' bindtap='secondNodeClick' data-fst='{{fstindex}}' data-snd='{{sndindex}}' hidden='{{fst.show}}'>
+                <view class='point'></view>
+                <text>{{snd.name}}</text>
+                <image mode='widthFix' src='{{snd.show == true?arrow_down:arrow_up}}'></image>
+              </view>
+              <block s-key="trd" s-for="trd, trdindex in snd.trd">
+                <!--节列表-->
+                <view class="{{selectFirstNodeIndex == fstindex && selectSecondNodeIndex == sndindex && selectThirdNodeIndex == trdindex?'video_jie_content video_jie_action':'video_jie_content'}}" bindtap='thirdNodeClick' data-fst='{{fstindex}}' data-snd='{{sndindex}}' data-trd='{{trdindex}}' hidden='{{trd.show}}'>
+                  <image mode='widthFix' src='{{selectFirstNodeIndex == fstindex && selectSecondNodeIndex == sndindex && selectThirdNodeIndex == trdindex?playActionIcon:playIcon}}'></image>
+                  <text>{{trd.name}}</text>
+                </view>
+
+                <!-- <view class='video_jie_content video_jie_action' hidden='{{thirdNodeHidden}}'>
+                <image mode='widthFix' src='/image/video/play_action.png'></image>
+                <text>xxxx</text>
+              </view>  -->
+              </block>
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

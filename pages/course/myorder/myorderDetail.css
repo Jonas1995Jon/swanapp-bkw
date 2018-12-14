@@ -1,0 +1,58 @@
+/* pages/course/myorder/myorderDetail.css */
+.myorder_con{
+  width: 710rpx;
+  overflow: hidden;
+  font-size: 26rpx;
+  color: #797979;
+  margin: 40rpx 20rpx;
+}
+.order_cell{
+  width: 100%;
+  margin: 0 auto;
+  float: left;
+  border-bottom: 1rpx #efefef solid;
+}
+.order_left{
+  width: 20%;
+  float: left;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.order_right{
+  width: 80%;
+  float: right;
+  text-align: right;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.order_course{
+  width: 100%;
+  text-align: left;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.submit_btn{
+width:710rpx;
+margin: 0 auto; 
+position:relative;
+display:block;
+margin-left:auto;
+margin-right:auto;
+margin-top: 100rpx;
+margin-bottom: 100rpx;
+padding-left:14px;
+padding-right:14px;
+box-sizing:border-box;
+font-size:18px;
+color: #fff;
+text-align:center;
+text-decoration:none;
+line-height:2.55555556;
+border-radius:5px;
+-webkit-tap-highlight-color:transparent;
+overflow:hidden;
+  background: #279df7;
+}
+.submit_btn_hover{
+  background: #0b85e1;
+}

@@ -1,0 +1,23 @@
+<!--index.wxml-->
+<!-- <import src="../navigation/navigation.wxml"/>
+<template is="navigation" data="{{navigation}}"></template> -->
+<import src="../nav/nav.swan" />
+<template is="nav" data="{{{nav}}}"></template>
+<view data-hi="{{groupindex}}" bindtap="load_newpaper" s-key="unitlist" s-for="unitlist" s-for-item="unitlist" s-for-index="groupindex"
+ class="study_list">
+	<view class="study_tit">
+		<view class="point"></view>
+		<text decode="true">{{unitlist.title}}</text>
+	</view>
+	<view class="banana_wrap">
+		<block s-key="bananaIcon" s-for="unitlist.bananaList" s-for-item="bananaIcon" s-for-index="bananaIconindex">
+			<block s-if="bananaIcon.icon == 1">
+				<image mode="widthFix" src="../../image/study/gold_banana.png"></image>
+			</block>
+			<block s-else>
+				<image mode="widthFix" src="../../image/study/gray_banana.png"></image>
+			</block>
+		</block>
+	</view>
+	<image class="study_start" mode="widthFix" src="../../image/study/study_start.png"></image>
+</view>

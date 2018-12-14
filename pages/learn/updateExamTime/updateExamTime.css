@@ -1,0 +1,107 @@
+/* pages/learn/updateExamTime/updateExamTime.css */
+.updateExamTime{
+  width: 100%;
+  overflow: hidden;
+}
+.account_cell {
+  /* background-color: #fff; */
+  width: 670rpx;
+  margin: 0 40rpx;
+  overflow: hidden;
+  float: left;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.account_cell_bd {
+  color: #181818;
+  font-size: 28rpx;
+  text-align: left;
+  width: 350rpx;
+  float: left;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+
+.account_cell_ft {
+  color: #89bdf7;
+  text-align: right;
+  font-size: 28rpx;
+  width: 300rpx;
+  float: right;
+  height: 100rpx;
+  line-height: 100rpx;
+  margin-right: 20rpx;
+}
+
+.account_cell_ft text {
+  margin: 0rpx 10rpx;
+  color: #f3343b;
+}
+
+.choiceCourse{
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  background: #fff;
+  position: fixed;
+  bottom: 0rpx;
+  opacity: 1;
+}
+.choiceCourse .title{
+  width: 750rpx;
+  color: #797979;
+  font-size: 32rpx;
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+}
+.courseList{
+  width: 710rpx;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.courseItem{
+  width: 710rpx;
+  border-bottom: 1rpx solid #dcdcdc;
+  display: flex;
+  color: #797979;
+  font-size: 28rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.courseTitle{
+  width: 700rpx;
+  color: #797979;
+}
+.courseItem image{
+  margin-top:25rpx;
+  width: 30rpx;
+  height: 30rpx;
+}
+.sureChoice{
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  height: 80rpx;
+  line-height: 80rpx;
+  color: #fff;
+  font-size: 32rpx;
+  background: #279df7;
+}
+.sureUpdateChoice{
+  width: 670rpx;
+  margin: 0 40rpx;
+  margin-top:80rpx;
+  text-align: center;
+  height: 80rpx;
+  line-height: 80rpx;
+  color: #fff;
+  font-size: 32rpx;
+  background: #279df7;
+}
+.tipMsg{
+  width: 670rpx;
+  margin: 0 40rpx;
+  margin-top:50rpx;
+  color: #181818;
+  font-size: 32rpx;
+}

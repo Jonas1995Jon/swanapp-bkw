@@ -1,0 +1,92 @@
+<!--pages/livelist/livePublicList.wxml-->
+<!-- <import src="../navigation/navigation.wxml" />
+<template is="navigation" data="{{navigation}}"></template> -->
+<!-- <import src="../nav/nav.wxml"/>
+<template is="nav" data="{{nav}}"></template>  -->
+<scroll-view scroll-y="true" scroll-top="{=scrollTop=}" bindscroll="scrollclick" style='height:100%' scroll-into-view="jumptoview">
+  <view class="live_container">
+    <!-- <view class="topTab">
+      <view class="{{publicshow == true ? 'topTab_left active' : 'topTab_left'}}" bindtap='publicClick'>
+        公开课
+      </view>
+      <view class="{{vipshow == true ? 'topTab_right active' : 'topTab_right'}}" bindtap='vipClick'>
+        VIP课程
+      </view>
+    </view> -->
+    <block s-if="publicshow == true">
+      <view class="vertical-timeline">
+        <block s-key="ymPublicCategory" s-for="ym, ymindex in ymPublicCategory">
+          <view class="vertical-timemonth-block">
+            <!--{{ym.year}}年-->{{ym.month}}月</view>
+          <block s-key="publiclist" s-for="public, publicindex in public_list">
+            <block s-if="(ym.year+''+ym.month) == (public.year+''+public.month)">
+              <view class="vertical-timeline-block" bindtap='publicCellClick' data-index='{{publicindex}}' data-rol="{{publicindex==public_list.length ? 'jumptoview' : ''}}">
+                <view class="vertical-timeline-icon v-timeline-icon1">
+                  <view class="icon">{{public.day}}日</view>
+                </view>
+                <view class="vertical-timeline-content">
+                  <view class="left">
+                    <image src='{{public.teachericon}}'></image>
+                  </view>
+                  <view class="middle">
+                    <view class="middle_top">
+                      {{public.title}}
+                    </view>
+                    <view class="middle_bottom">
+                      <view class="middle_bottom_name">
+                        {{public.teacher}}
+                      </view>
+                      <view class="middle_bottom_time">
+                        <image src='../../image/live/time_cicle.png'></image>
+                        {{public.startTimeHour}}-{{public.endTimeHour}}
+                      </view>
+                    </view>
+                  </view>
+                  <view class="right">
+                    <block s-if="public.state == 0">
+                      <view class="right_top">
+                        未开始
+                      </view>
+                    </block>
+                    <block s-if="public.state == 1">
+                      <view class="right_top_active">
+                        直播中
+                      </view>
+                    </block>
+                    <block s-if="public.state == 2">
+                      <view class="right_top_end">
+                        已结束
+                      </view>
+                    </block>
+                    <block s-if="public.state == 3">
+                      <view class="right_top_active" style='margin-top:25rpx;'>
+                        即将开始
+                      </view>
+                    </block>
+                    <block s-if="public.state != 1 && public.state != 2">
+                      <view>
+                        <view class="right_middle">
+                          倒计时
+                        </view>
+                        <view class="right_bottom">
+                          {{public.countDownTime}}
+                        </view>
+                      </view>
+                    </block>
+                  </view>
+                </view>
+              </view>
+            </block>
+          </block>
+        </block>
+      </view>
+    </block>
+    
+  </view>
+</scroll-view>
+<view class="widget-goTop" bindtap="goTop" s-if=" floorstatus ">
+  <view class="gotop-wrap">
+    <view class="icon icon-top"></view>
+    <view>顶部</view>
+  </view>
+</view>

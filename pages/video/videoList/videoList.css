@@ -1,0 +1,7 @@
+/* pages/video/videoList/videoList.css */
+@import "../video.css";
+.video_jie_list image{
+  width: 30rpx;
+  margin-right: 15rpx;
+  color: #797979;
+}

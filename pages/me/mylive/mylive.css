@@ -1,0 +1,5 @@
+/* pages/me/mylive/mylive.css */
+@import "../../livelist/liveListNew.css";
+.live_none_msg{
+  margin-left: 100rpx;
+}

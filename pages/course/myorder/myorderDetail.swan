@@ -1,0 +1,41 @@
+<!--pages/course/myorder/myorderDetail.wxml-->
+<view class='myorder_con'>
+  <view class='order_cell'>
+    <view class='order_left'>订单编号</view>
+    <view class='order_right'>{{order.orderid}}</view>
+  </view>
+  <view class='order_cell'>
+    <view class='order_left'>订单金额</view>
+    <view class='order_right'>{{order.totalprice}}</view>
+  </view>
+  <view class='order_cell'>
+    <view class='order_left'>订单状态</view>
+    <view class='order_right'>{{order.state == 0 ? "未完成" : "已完成"}}</view>
+  </view>
+  <view class='order_cell'>
+    <view class='order_left'>创建时间</view>
+    <view class='order_right'>{{order.createtime}}</view>
+  </view>
+  <view class='order_cell'>
+    <view class='order_left'>应付金额</view>
+    <view class='order_right'>{{order.amountdue}}</view>
+  </view>
+  <view class='order_cell'>
+    <view class='order_left'>优惠券金额</view>
+    <view class='order_right'>{{order.couponprice}}</view>
+  </view>
+  <!-- <view class='order_cell'>
+    <view class='order_left'>帮考币</view>
+    <view class='order_right'>{{order.bkgold}}</view>
+  </view> -->
+  <view class='order_cell'>
+    <view class='order_left'>订单课程</view>
+    <view class='order_right'></view>
+  </view>
+  <block s-key="order" s-for="orderItem, myorderNoIndex in order.courselist">
+    <view class='order_cell'>
+      <view class='order_course'>{{orderItem.coursename}}({{orderItem.commodity_title}})</view>
+    </view>
+  </block>
+</view>
+<view hidden='{{state == 1 ? true : false}}' bindtap='buyBtnClick' class='submit_btn' hover-class="submit_btn_hover">付款</view>

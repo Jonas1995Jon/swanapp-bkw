@@ -1,0 +1,58 @@
+/* me.css */
+page {
+  background: #f0eff4;
+  color: #323c47;
+  font-size: 30rpx;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+/* button{
+  position: absolute;
+  width: 100%;
+  left:0px;
+     opacity: 0;  
+} */
+
+.logres {
+  font-size: 18px;
+  color: white;
+  padding: 8px 64px;
+  border-radius: 5px;
+  background-color: skyblue;
+}
+
+.info {
+    color: #5f5e66;
+    flex: 1;
+    height: auto;
+    text-align: left;
+}
+
+.linkman{
+  position: absolute;
+  left: 160rpx;
+  top:5rpx;
+  font-size: 32rpx;
+}
+.username{
+  position: absolute;
+  left: 160rpx;
+  top:60rpx;
+  font-size: 26rpx;
+}
+.type{
+  position: fixed;
+  right: 28rpx;
+  color: #dfdfdf;
+}
+.cs_button {
+  position: absolute;
+  left: 0rpx;
+  top: 0rpx;
+  width: 100%;
+  height: 100rpx;
+  z-index: 999;
+  opacity: 0;
+}

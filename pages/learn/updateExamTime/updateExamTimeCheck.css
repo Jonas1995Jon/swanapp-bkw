@@ -1,0 +1,9 @@
+/* pages/learn/updateExamTime/updateExamTimeCheck.css */
+@import "../../me/bind/bind.css";
+.tipMsg{
+  width: 650rpx;
+  margin: 0 50rpx;
+  margin-top:0rpx;
+  color: #181818;
+  font-size: 32rpx;
+}

@@ -1,0 +1,261 @@
+/* pages/me/recharge/recharge.css */
+page {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.video_nav {
+  display: flex;
+}
+.video_tab {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  color: #797979;
+  font-size: 32rpx;
+  border-bottom: 1px solid #efefef;
+  box-sizing: border-box;
+}
+
+.video_tab text {
+  display: block;
+  line-height: 40rpx;
+  margin-top: 20rpx;
+  font-size: 32rpx;
+  border-right: 1px solid #797979;
+}
+.action {
+  color: #279df7 !important;
+  border-bottom: 2px solid #279df7 !important;
+}
+.swiper{
+  height: 100%;
+}
+.swiper swiper-item{
+  height: 100%;
+  overflow-y: auto !important;
+}
+.recharge_warp{
+  width: 100%;
+  overflow: hidden;
+  padding: 20rpx 20rpx;
+  background: #fff;
+  border-bottom: 1rpx #efefef solid;
+}
+.recharge_top{
+  width: 710rpx;
+  font-size:26rpx;
+  color:#5f5e66;
+  height: 40rpx;
+  line-height: 40rpx;
+  margin-top:20rpx;
+}
+.recharge_bottom{
+  width: 710rpx;
+  font-size:32rpx;
+  color:#5f5e66;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+.recharge_left{
+  float: left;
+  width: 500rpx;
+}
+.recharge_right{
+  float: right;
+  width: 210rpx;
+}
+.recharge_right view{
+  float: left;
+  width: 170rpx;
+  text-align: right;
+  font-size:26rpx;
+  color: #279df7;
+}
+.recharge_right image{
+  float: right;
+  width: 20rpx;
+  height: 30rpx;
+  margin-top:15rpx;
+}
+.coupon_warp{
+  display: block;
+  position: relative; 
+  /* top:-300rpx;  */
+  width: 710rpx;
+  overflow: hidden;
+  margin: 20rpx 20rpx;
+  /* background: #fff; 
+  border: 1rpx #efefef solid; 
+  border-radius: 20rpx;  */
+  margin-top:-284rpx;
+}
+.coupon_top{
+  width: 710rpx;
+  height: 150rpx;
+  line-height: 150rpx;
+   /* background: #fe782f;
+  border-bottom: 10rpx #fff dotted; */
+}
+.coupon_top_left{
+  margin-left: 40rpx;
+  width: 400rpx;
+  float: left;
+  font-size: 36rpx;
+  color: #fff;
+}
+.coupon_top_center{
+  width: 200rpx;
+  float: left;
+  font-size: 76rpx;
+  font-weight: bolder;
+  color: #fff;
+  height: 150rpx;
+  text-align: right;
+}
+.coupon_top_right{
+  width: 50rpx;
+  float: left;
+  font-size: 46rpx;
+  color: #fff;
+  margin-top:30rpx;
+}
+.coupon_bottom{
+  width: 656rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin: 0 20rpx;
+}
+.coupon_bottom_left{
+  width: 500rpx;
+  float: left;
+  font-size: 24rpx;
+  color: #797979;
+}
+.coupon_bottom_left view{
+  width: 470rpx;
+  float: right;
+  font-size: 24rpx;
+  color: #797979;
+}
+.coupon_bottom_left image{
+  width: 25rpx;
+  height: 25rpx;
+  float: left;
+  margin-top:12rpx;
+}
+.coupon_bottom_right{
+  width: 156rpx;
+  float: right;
+  font-size: 24rpx;
+  color: #797979;
+  text-align: right;
+}
+.coupon_msg{
+  position: fixed;
+  bottom: 86rpx;
+  width: 750rpx;
+  margin: 0 auto;
+  text-align: center;
+  overflow: hidden;
+}
+.coupon_msg_left{
+  margin-left: 120rpx;
+  width: 300rpx;
+  float: left;
+  font-size: 24rpx;
+  color: #797979;
+  text-align: right;
+}
+.coupon_msg_right{
+  width: 200rpx;
+  float: left;
+  font-size: 24rpx;
+  color: #279df7;
+  text-align: left;
+}
+.coupon_bg{
+  position: relative; 
+  width: 710rpx;
+  margin: 40rpx 20rpx;
+  /* margin-top:-534rpx; */
+  height: 234rpx;
+  z-index: -999;
+}
+.recharge_input{
+  border: 1rpx #efefef solid;
+  padding: 10rpx 20rpx;
+}
+
+.modal-mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.5;
+  overflow: hidden;
+  z-index: 9000;
+  color: #fff;
+}
+.modal-dialog {
+  width: 540rpx;
+  overflow: hidden;
+  position: fixed;
+  top: 45%;
+  left: 0;
+  z-index: 9999;
+  background: #f9f9f9;
+  margin: -180rpx 105rpx;
+  border-radius: 36rpx;
+}
+.modal-title {
+  padding-top: 50rpx;
+  font-size: 36rpx;
+  color: #030303;
+  text-align: center;
+}
+.modal-content {
+  padding: 50rpx 32rpx;
+}
+.modal-input {
+  display: flex;
+  background: #fff;
+  border: 2rpx solid #ddd;
+  border-radius: 4rpx;
+  font-size: 28rpx;
+}
+.input {
+  width: 100%;
+  height: 82rpx;
+  font-size: 28rpx;
+  line-height: 28rpx;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  color: #333;
+}
+input-holder {
+  color: #666;
+  font-size: 28rpx;
+}
+.modal-footer {
+  display: flex;
+  flex-direction: row;
+  height: 86rpx;
+  border-top: 1px solid #dedede;
+  font-size: 34rpx;
+  line-height: 86rpx;
+}
+.btn-cancel {
+  width: 50%;
+  color: #666;
+  text-align: center;
+  border-right: 1px solid #dedede;
+}
+.btn-confirm {
+  width: 50%;
+  color: #ec5300;
+  text-align: center;
+}

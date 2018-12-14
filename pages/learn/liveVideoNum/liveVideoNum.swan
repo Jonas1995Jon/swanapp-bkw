@@ -1,0 +1,23 @@
+<!--pages/learn/liveVideoNum.wxml-->
+<!-- <import src="../../navigation/navigation.wxml" />
+<template is="navigation" data="{{navigation}}"></template> -->
+<view class='main'>
+  <view class='main_top'>
+    观看{{brushtype == 1 ? "直播" : "视频"}}数
+  </view>
+  <view class='main_middle'>
+    {{brush.watch_video_number}}
+  </view>
+  <view class='main_bottom'>
+    <view class='bottom_list'>
+      <view class='title'>{{brushtype == 1 ? "直播" : "视频"}}总时长</view>
+      <view class='desc'>{{brush.total_timelength}}</view>
+    </view>
+    <view class='bottom_line'>
+    </view>
+    <view class='bottom_list'>
+      <view class='title'>{{brushtype == 1 ? "直播" : "视频"}}观看时长</view>
+      <view class='desc'>{{brush.watch_video_timelength}}</view>
+    </view>
+  </view>
+</view>

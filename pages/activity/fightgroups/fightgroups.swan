@@ -1,0 +1,102 @@
+<!--pages/activity/fightgroups/fightgroups.wxml-->
+<!-- <import src="../../navigation/navigation.wxml"/>
+<template is="navigation" data="{{navigation}}"></template> -->
+<view class='fight_container'>
+  <image src='../../../image/fightgroups/fightgroups_banner.png'></image>
+  <view class="banner_title">{{templateList[0].title}}{{templateList[0].price == 0 ? '免费领' : templateList[0].price + '元领'}}</view>
+  <view class='fight_view'>
+    <block s-if="fightGroupsSuccess == 0">
+      <view class='fight_list'>
+        <view s-key="groupCompleteListItem" s-for="groupCompleteListItem, groupCompleteindex in groupCompleteList.list" class='fight_list_item'>
+          <block s-if="groupCompleteindex == 0">
+            <image class='portrait' src='{{groupCompleteListItem.headimgurl == noportrait ? userinfo.avatarUrl : groupCompleteListItem.headimgurl}}'></image>
+            <view class="grouper">团长</view>
+            <view class='name_first'>{{groupCompleteListItem.nickname == '' ? userinfo.nickName : groupCompleteListItem.nickname}}</view>
+          </block>
+          <block s-else>
+            <image class='noportrait' src='{{groupCompleteListItem.headimgurl}}'></image>
+            <view>{{groupCompleteListItem.nickname}}</view>
+          </block>
+        </view>
+      </view>
+
+      <view class="fight_list_content">
+        <view class='list_content_title'>还剩{{residueNumber}}人即可¥{{templateList[0].price}}开启¥{{templateList[0].costprice}}{{templateList[0].title}}</view>
+        <view class='list_content_time'>{{countDownTimeTitle}}</view>
+        <!-- {{fightGroupsIsOverState == 0}} -->
+        
+        <button open-type="share" class='list_content_btn' animation="{{animationMiddleHeaderItem}}">
+          <image src='../../../image/fightgroups/baidu_icon.png'></image>
+          <text>邀请好友一起领取</text>
+        </button>
+
+        <!-- <view bindtap='directOpenClick' class='list_content_jump'>
+        不差钱，¥29直接开启
+      </view> -->
+      </view>
+    </block>
+
+    <block s-if="fightGroupsSuccess == 1">
+      <view class="fight_complete">
+        <view class="fight_complete_top">
+          <view class='top_success'> ——<text>拼团成功</text>——</view>
+          <view class='top_title'>
+            ￥{{templateList[0].price}}即可打开价值{{templateList[0].costprice}}元{{templateList[0].title}}
+          </view>
+        </view>
+
+        <view class="scroll_box">
+          <scroll-view class="scroll-view_x" scroll-x style="width:auto;overflow:hidden;">
+            <view class="item_list" s-key="courseCommodityListItem" s-for="courseCommodityListItem, courseCommodityListIndex in courseCommodityList">
+              <view class='complete_list'>
+                <view class='complete_list_item'>
+                  <image src='../../../image/fightgroups/course_bg1.png'></image>
+                  <view class='classname'>{{courseCommodityListItem.coursename}}{{courseCommodityListItem.commodityname}}</view>
+                  <view class='coursename'>{{courseCommodityListItem.coursename}}</view>
+                </view>
+                <!-- <block wx:if="{{listItem != 10}}"> -->
+                <view class='complete_list_plus'>
+                  <image src='{{courseCommodityListIndex == courseCommodityList.length-1 ? "" : "../../../image/fightgroups/course_plus.png"}}'></image>
+                </view>
+                <!-- </block> -->
+              </view>
+
+            </view>
+
+          </scroll-view>
+        </view>
+
+        <view class="fight_complete_content">
+          <button bindtap='getCourseClick' data-receivestate='{{receivestate}}' class='fight_complete_btn'>
+            <text>{{receiveBtnTitle}}</text>
+          </button>
+        </view>
+      </view>
+    </block>
+    <block s-if="fightGroupsSuccess == 1 && groupCompleteList.list.length > 0">
+      <view class="fight_list_user">
+        <view class="role_title">拼团好友</view>
+        <view class='fight_list' style='margin-top:-50rpx;'>
+          <view s-key="groupCompleteListItem2" s-for="groupCompleteListItem2, groupCompleteindex2 in groupCompleteList.list" class='fight_list_item'>
+            <block s-if="groupCompleteindex2 == 0">
+              <image class='portrait' src='{{groupCompleteListItem2.headimgurl}}'></image>
+              <view class="grouper">团长</view>
+              <view class='name_first'>{{groupCompleteListItem2.nickname}}</view>
+            </block>
+            <block s-else>
+              <image class='portrait' src='{{groupCompleteListItem2.headimgurl}}'></image>
+              <view>{{groupCompleteListItem2.nickname}}</view>
+            </block>
+          </view>
+
+        </view>
+      </view>
+    </block>
+    <view class="fight_list_role" style='{{fightGroupsSuccess == 1 ? "margin-top:0px;" : "margin-top:100px;"}}'>
+      <view class="role_title">活动规则</view>
+      <text class="role_des">
+        {{templateList[0].rules}}
+      </text>
+    </view>
+  </view>
+</view>

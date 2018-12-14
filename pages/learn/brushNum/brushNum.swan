@@ -1,0 +1,78 @@
+<!--pages/learn/brushNum/brushNum.swan-->
+<!-- <import src="../../navigation/navigation.swan" />
+<template is="navigation" data="{{navigation}}"></template> -->
+<view class='main'>
+	<view class='main_top'>
+		正确率
+	</view>
+	<view class='main_middle'>
+		{{brush.accuracy}}
+	</view>
+	<view class='main_bottom'>
+		<view class='bottom_list'>
+			<view class='title'>总题数</view>
+			<view class='desc'>{{brush.totalquestionnumber}}</view>
+		</view>
+		<view class='bottom_list'>
+			<view class='title'>刷题时长</view>
+			<view class='desc'>{{brush.wastetime}}</view>
+		</view>
+		<view class='bottom_list'>
+			<view class='title'>刷题数</view>
+			<view class='desc'>{{brush.shuaticount}}</view>
+		</view>
+	</view>
+	<view style='width:100%;height:40rpx;background: #f0eff4;'></view>
+	<scroll-view class='learn_scroll' scroll-y bindscrolltolower="scrolltolower">
+		<view class='learn_record'>
+			<block s-key="learnlist" s-for-index="learnindex" s-for="{{learnlist}}" s-for-item="learn">
+				<view class='learn_list' bindtap="{{ learn.state == 1 ? 'studyhistoryYesListClick' : 'studyhistoryNoListClick'}}" data-index='{{learnindex}}'>
+					<view class='learn_list_left'>
+						<view class='learn_title'>{{learn.title}}</view>
+						<block s-if="{{learn.state == 1}}">
+							<view class="learn_img">
+								<view class='learn_img_left'>
+									<image src='../../../image/study/clock_fenxi.png'></image>
+									{{learn.wastetime}}
+								</view>
+								<view class='learn_img_right'>
+									<image src='../../../image/study/zhengquelv_fenxi.png'></image>
+									{{learn.rightnum}}道
+								</view>
+							</view>
+						</block>
+						<block s-else>
+							<view class="learn_state">未完成</view>
+						</block>
+						<view class='learn_type_total'>{{learn.typename}}，共{{learn.total}}道</view>
+					</view>
+					<view class='learn_list_right'>
+						<block s-if="{{learn.state == 1}}">
+							<!--渲染圆环-->
+							<view class='circlewrap'>
+								<view class='circle_big'>
+									<view class='circle_big_title'>正确率</view>
+									<view class='circle_big_text'>
+										<text>{{learn.accuracy}}</text>
+										<text> {{cicleSymbol}}</text>
+									</view>
+								</view>
+								<view class='circlewrap_in left'>
+									<view animation="{{learn.arc_lData}}" class='arc arc_l'></view>
+								</view>
+								<view class='circlewrap_in right'>
+									<view animation="{{learn.arc_rData}}" class='arc arc_r'></view>
+								</view>
+							</view>
+						</block>
+					</view>
+				</view>
+			</block>
+		</view>
+	</scroll-view>
+</view>
+
+<view class="weui-loadmore" hidden="{{isHideLoadMore}}">
+	<view class="weui-loading"></view>
+	<view class="weui-loadmore__tips">{{loadMoreMsg}}</view>
+</view>

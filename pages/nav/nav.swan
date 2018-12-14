@@ -1,0 +1,25 @@
+<!--pages/nav/nav.wxml-->
+<template name="nav">
+    <view class="top-news" style='{{nav.backgroundColor == 1 ? "background: #545c65;" : "background:#141c23;"}}'>
+       <!-- <view class="self-box">
+        <view class="img-self">
+          <image src="../../images/self.jpg"></image>
+        </view>
+      </view>
+      <view class="self-add">
+        <view class="img-add">
+          <image src="../../images/add.jpg"></image>
+        </view>
+      </view>  -->
+      <view class="nav-scroll">
+        <scroll-view class="scroll-view_H" scroll-x="true" scroll-left="{=nav.scrollLeft=}" style="width:100%">
+        <block s-key="nav" s-for="navItem, navindex in nav.section">
+          <text id="{{navItem.id}}" catchtap="handleTap" data-index="{{navindex}}" class="nav-name {{navItem.id == nav.currentId ? 'nav-hover' : ''}}">{{navItem.name}}</text>
+          </block>
+        </scroll-view>
+      </view>
+    </view>
+    <block s-if="nav.showView != 1">
+      <view style='margin-top:70rpx;'></view>
+    </block>
+</template>

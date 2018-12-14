@@ -1,0 +1,110 @@
+/* pages/me/bind/bind.css */
+.bind_content{
+  padding: 100rpx 60rpx;
+}
+.bind_phone{
+  font-size: 32rpx;
+  padding-left:30rpx;
+  padding-right: 85rpx;
+  color: #279df7;
+}
+.input_wrap:first-child{
+  padding-top: 50rpx;
+}
+.input_wrap{
+  display: flex;
+  justify-content: flex-start;
+  align-items:center;
+  padding:0 20rpx;
+  position: relative;
+  margin-bottom: 50rpx;
+  border-bottom: 1px solid #b7b7b7;
+}
+.icon_close{
+  position: absolute;
+  right: 10rpx;
+  bottom: 15rpx;
+}
+.submit_btn{
+position:relative;
+display:block;
+margin-left:auto;
+margin-right:auto;
+margin-top: 20rpx;
+padding-left:14px;
+padding-right:14px;
+box-sizing:border-box;
+font-size:18px;
+color: #fff;
+text-align:center;
+text-decoration:none;
+line-height:2.55555556;
+border-radius:5px;
+-webkit-tap-highlight-color:transparent;
+overflow:hidden;
+  background: #279df7;
+}
+.submit_btn_hover{
+  background: #0b85e1;
+}
+.gray_center{
+  color: #C3C3C3;
+  text-align: center;
+  text-decoration: underline;
+  font-size:30rpx;
+  margin-top: 50rpx;
+}
+.input_text{
+  font-size: 32rpx;
+  color: #737373;
+}
+.input_wrap_bg{
+  border: 1px solid #eeeeee;
+  padding: 50rpx;
+  border-radius: 20rpx;
+  box-shadow: 3rpx 5rpx 10rpx #dcdcdc;
+}
+.input_wrap_tit{
+  font-size: 50rpx;
+  text-align: center;
+  padding-bottom: 100rpx;
+}
+.input_code_subtit{
+  font-size: 28rpx;
+  text-align: center;
+  padding-bottom: 20rpx;
+  color: #aaaaaa;
+}
+.input_code_tit{
+  padding-bottom: 20rpx;
+}
+.input_nopadding{
+  padding: 0;
+}
+.password_wrap{
+  margin-bottom: 20rpx;
+}
+.wangjimima{
+  font-size: 24rpx;
+  color:#C3C3C3;
+  text-align: right;
+  padding: 10rpx 0;
+}
+.set_code{
+  width: 60%;
+  margin: 0 auto;
+  line-height:2;
+  font-size: 34rpx;
+}
+.code_input{
+  margin-top: 50rpx;
+  display: flex;
+  justify-content:center;
+}
+.code_inputlist{
+  border: 1px solid #dcdcdc;
+  width: 65rpx;
+  height: 75rpx;
+  text-align: center;
+  margin: 0 10rpx;
+}

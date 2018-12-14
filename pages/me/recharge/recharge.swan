@@ -1,0 +1,74 @@
+<!--pages/me/recharge/recharge.wxml-->
+<view class='video_nav'>
+	<view bindtap='rechargeBtnClick' data-index='0' class="{{currentindex == 0 ? 'video_tab action' : 'video_tab'}}">
+		<text>钱包</text>
+	</view>
+	<view bindtap='rechargeBtnClick' data-index='1' class="{{currentindex == 1 ? 'video_tab action' : 'video_tab'}}">
+		<text>优惠券</text>
+	</view>
+</view>
+<swiper class='swiper' bindchange="rechargeSwiperChange" current="{{currentindex}}">
+	<swiper-item>
+		<scroll-view scroll-y style='height:560px;'>
+			<view class='recharge_warp'>
+				<view class='recharge_top'>
+					余额
+				</view>
+				<view class='recharge_bottom'>
+					<view class='recharge_left'>
+						¥{{balance.balance}}
+					</view>
+					<view class='recharge_right' bindtap='rechargeClick'>
+						<image src='../../../image/find/right_arrow.png'></image>
+						<view>充值</view>
+					</view>
+				</view>
+			</view>
+			<view class="modal-mask" bindtap="hideModal" hidden="{{hiddenModal}}"></view>
+			<view class="modal-dialog" hidden="{{hiddenModal}}">
+				<view class="modal-title">账户充值</view>
+				<view class="modal-content">
+					<view class="modal-input">
+						<input bindinput="rechargeInput" placeholder-class="input-holder" type='digit' class="input" placeholder="请输入充值金额" />
+					</view>
+				</view>
+				<view class="modal-footer">
+					<view class="btn-cancel" bindtap="cancelClick">取消</view>
+					<view class="btn-confirm" bindtap="confirmClick">确定</view>
+				</view>
+			</view>
+		</scroll-view>
+	</swiper-item>
+	<swiper-item>
+		<scroll-view scroll-y style='height:560px;'>
+			<block s-key="couponList" s-for="couponItem, couponIndex in coupon.list">
+				<!-- style='background: url({{invalid == true ? couponBgYes : couponBgNo}}) no-repeat;' -->
+				<image class='coupon_bg' src='{{invalid == true ? couponBgYes : couponBgNo}}'></image>
+				<view class='coupon_warp'>
+					<view class='coupon_top'>
+						<view class='coupon_top_left'>{{couponItem.title}}</view>
+						<!-- 全品类可用 -->
+						<view class='coupon_top_center'>
+							{{couponItem.price}}
+						</view>
+						<view class='coupon_top_right'>
+							{{couponItem.coupontype == "allcategorydiscount" ? "折" : "元"}}
+						</view>
+					</view>
+					<view class='coupon_bottom'>
+						<view class='coupon_bottom_left'>
+							<image src="../../../image/live/time_cicle.png"></image>
+							<!-- {{couponItem.starttime}} -->
+							<view>{{couponItem.validtime}}截止</view>
+						</view>
+						<view class='coupon_bottom_right'>{{couponItem.des}}</view>
+					</view>
+				</view>
+			</block>
+			<view class='coupon_msg' bindtap='invalidClick'>
+				<view class='coupon_msg_left'>没有更多可用券了，</view>
+				<view class='coupon_msg_right'>查看{{invalid == true ? "无效券" : "有效券"}}</view>
+			</view>
+		</scroll-view>
+	</swiper-item>
+</swiper>

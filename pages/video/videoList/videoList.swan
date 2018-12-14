@@ -1,0 +1,43 @@
+<!--pages/video/videoList/videoList.wxml-->
+<!--videoList.wxml-->
+<!-- <import src="../../navigation/navigation.wxml"/>
+<template is="navigation" data="{{navigation}}"></template> -->
+<view class="video_wrap">
+  <video id="list_video" src="{{videoUrl}}" bindplay='startPlay' bindpause="pausePlay" bindended='endPlay' objectFit='cover' binderror="listenerVideo" autoplay='false' controls></video>
+</view>
+<view class='video_nav'>
+  <!-- <view class='video_tab video_tab_action'> -->
+  <view class='video_tab'>
+    <text>列表</text>
+  </view>
+  <!-- <view class='video_tab'>讲义</view> -->
+</view>
+<view class='video_content_wrap'>
+  <view class='video_listwrap'>
+    <block s-key="fst" s-for="fst, fstindex in videoList">
+      <!-- <block wx:if="{{fst.icon == 1}}">
+      </block> -->
+
+      <!--章列表-->
+      <view class='video_list'>
+        <!--章名字-->
+        <view class='video_tit' bindtap='firstNodeClick' data-index='{{fstindex}}'>
+          <text>{{fst.first}}</text>
+          <image mode='widthFix' src='{{fst.show == true?arrow_down:arrow_up}}'></image>
+        </view>
+        <!--节列表-->
+        <view class='video_content' hidden='{{fst.show}}'>
+          <view class='video_jie_list'>
+            <block s-key="snd" s-for="snd, sndindex in fst.second">
+              <!--节名字-->
+              <view class='video_jie_tit' bindtap='secondNodeClick' data-fst='{{fstindex}}' data-snd='{{sndindex}}' hidden='{{fst.show}}'>
+                <image mode='widthFix' src='{{selectFirstNodeIndex == fstindex && selectSecondNodeIndex == sndindex && selectThirdNodeIndex == trdindex?playActionIcon:playIcon}}'></image>
+                <text>{{snd.title}}</text>
+              </view>
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

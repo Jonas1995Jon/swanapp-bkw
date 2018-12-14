@@ -1,0 +1,51 @@
+<!--pages/find/learningRecord/learningRecord.wxml-->
+<!-- <import src="../../navigation/navigation.wxml"/>
+<template is="navigation" data="{{navigation}}"></template> -->
+<view class='video_nav'>
+  <view bindtap='learnBtnClick' data-index='0' class="{{currentindex == 0 ? 'video_tab video_tab_action' : 'video_tab'}}">
+    <text>已完成</text>
+  </view>
+  <view bindtap='learnBtnClick' data-index='1' class="{{currentindex == 1 ? 'video_tab video_tab_action' : 'video_tab'}}">
+    <text>未完成</text>
+  </view>
+</view>
+<view class='learningRecord_wrap'>
+  <swiper class='swiper' bindchange="swiperChange" current="{{currentindex}}">
+    <swiper-item>
+      <scroll-view scroll-y bindscrolltolower="scrolltolower" style='height:627px;'>
+        <block s-key="studyhistoryYes" s-for="studyhistoryYes, studyhistoryYesindex in studyhistoryYes.val">
+          <view class='learningRecord_list' hover-class='list_l_action' bindtap='studyhistoryYesListClick' data-index='{{studyhistoryYesindex}}'>
+            <view class='list_in'>
+              <view class='list_l'>
+                <view class='list_l_tit'>{{studyhistoryYes.title}}</view>
+                <view class='list_l_text'>学习类型：{{studyhistoryYes.typename}}</view>
+                <view class='list_l_text'>创建时间：{{studyhistoryYes.createtime}}</view>
+              </view>
+              <image mode='widthFix' src='../../../image/find/right_arrow.png' class='learningRecord_arrow'></image>
+            </view>
+          </view>
+        </block>
+      </scroll-view>
+    </swiper-item>
+    <swiper-item>
+      <scroll-view scroll-y bindscrolltolower="scrolltolower" style='height:627px;'>
+        <block s-key="studyhistoryNo" s-for="studyhistoryNo, studyhistoryNoindex in studyhistoryNo.val">
+          <view class='learningRecord_list' hover-class='list_l_action' bindtap='studyhistoryNoListClick' data-index='{{studyhistoryNoindex}}'>
+            <view class='list_in'>
+              <view class='list_l'>
+                <view class='list_l_tit'>{{studyhistoryNo.title}}</view>
+                <view class='list_l_text'>学习类型：{{studyhistoryNo.typename}}</view>
+                <view class='list_l_text'>创建时间：{{studyhistoryNo.createtime}}</view>
+              </view>
+              <image mode='widthFix' src='../../../image/find/right_arrow.png' class='learningRecord_arrow'></image>
+            </view>
+          </view>
+        </block>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+</view>
+<view class="weui-loadmore" hidden="{{isHideLoadMore}}">
+  <view class="weui-loading"></view>
+  <view class="weui-loadmore__tips">{{loadMoreMsg}}</view>
+</view>

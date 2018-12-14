@@ -1,0 +1,100 @@
+<!--pages/course/buyCourse/buyCourse.wxml-->
+<!-- <import src="../../navigation/navigation.wxml"/>
+<template is="navigation" data="{{navigation}}"></template> -->
+<view class="cell_br"></view>
+<view class='buyCourse'>
+<view class="buyCourse_wrap" style='line-height:120rpx;'>
+  <image mode="widthFix" src="../../../image/me/order_menu.png"></image>
+  <view class="buyCourse_cell_order">订单编号：{{orderid}}</view>
+</view>
+<block s-if="orderstate == 1">
+  <block s-key="courseitem" s-for="courseitem, courseitemindex in courselist">
+    <view class="buyCourse_wrap cell_border_top">
+      <view class="buyCourse_cell_title">{{courseitem.coursename}}</view>
+      <view class="buyCourse_cell_detail">
+        <view class="buyCourse_cell_type">{{courseitem.ctname}}</view>
+        <!-- <view class="buyCourse_cell_type">{{courselistItem.package[1].title}}</view> -->
+        <view class="buyCourse_cell_price">¥{{courseitem.commodity_costprice}}元</view>
+      </view>
+    </view>
+  </block>
+</block>
+<block s-else>
+  <block s-if="courselist[0].courseid == -1 && courselist[0].selected == 1">
+    <block s-key="banxinglistitem" s-for="banxinglistitem, banxinglistitemindex in courselist[0].banxinglist">
+      <block s-if="banxinglistitem.selected == 1">
+        <view class="buyCourse_wrap cell_border_top">
+          <view class="buyCourse_cell_title">{{courselist[0].title}}</view>
+          <view class="buyCourse_cell_detail">
+            <view class="buyCourse_cell_type">{{banxinglistitem.title}}</view>
+            <!-- <view class="buyCourse_cell_type">{{courselistItem.package[1].title}}</view> -->
+            <view class="buyCourse_cell_price">¥{{totalprice}}元</view>
+          </view>
+        </view>
+      </block>
+    </block>
+  </block>
+  <block s-else>
+    <block s-key="courseitem" s-for="courseitem, courseitemindex in courselist">
+      <block s-if="courseitem.selected == 1">
+        <block s-key="banxinglistitem" s-for="banxinglistitem, banxinglistitemindex in courseitem.banxinglist">
+          <block s-if="banxinglistitem.selected == 1">
+            <view class="buyCourse_wrap cell_border_top">
+              <view class="buyCourse_cell_title">{{courseitem.title}}</view>
+              <view class="buyCourse_cell_detail">
+                <view class="buyCourse_cell_type">{{banxinglistitem.title}}</view>
+                <!-- <view class="buyCourse_cell_type">{{courselistItem.package[1].title}}</view> -->
+                <view class="buyCourse_cell_price">¥{{banxinglistitem.price}}元</view>
+              </view>
+            </view>
+          </block>
+        </block>
+      </block>
+    </block>
+  </block>
+</block>
+<view class='balance' bindtap='actionSheetbindchange'>
+  <view class='balance_left'>
+    <image src='../../../image/me/voucher_icon.png'></image>
+    <view>优惠券</view>
+  </view>
+  <view class='balance_right'>
+    <view class="cell_ft cell_ft_in_access" style='right:0rpx;'></view>
+    <view>{{coupon.list.length == 0 ? "暂无可用优惠券" : ""}}</view>
+  </view>
+</view>
+<view class='balance'>
+  <view class='balance_left'>
+    <image src='../../../image/me/balance_icon.png'></image>
+    <view>余\t额：{{balanceA}}元</view>
+  </view>
+  <view class='balance_right'>
+			<switch checked='{{balance.balance > 0 && switchChecked1 == 0 ? true : false}}' bindchange="switchChange1" color="#279df7" />
+			<view>{{balanceB}}元</view>
+
+		</view>
+</view>
+</view>
+<view class="buyCourse_submit">
+  <view class="buyCourse_button_price">应付金额：¥{{price}}元</view>
+  <view bindtap='createpayorder' class="buyCourse_button_sure">确认支付</view>
+</view>
+<action-sheet hidden="{{choiceCouponHidden}}" bindchange="actionSheetbindchange">
+  <view class='choiceCourse'>
+    <view class='title'>选择优惠券</view>
+    <view class='courseList'>
+      <block s-key="couponList" s-for="couponItem, couponIndex in couponList">
+        <view class='courseItem' bindtap='couponChoiceTap' data-index='{{couponIndex}}' data-coupontype='{{couponItem.coupontype}}'>
+          <block s-if="couponItem.courseid != -1">
+          <view class=' courseTitle '>{{couponItem.title}}({{couponItem.des}})</view>
+          </block>
+          <block s-else>
+            <view class=' courseTitle '>{{couponItem.title}}</view>
+          </block>
+          <image src='{{couponItem.selected == 1 ? "../../../image/other/buycourse_select_checked.png" : "../../../image/other/buycourse_select_unchecked.png"}} '></image>
+        </view>
+     </block>
+  </view>
+  <view class='sureChoice ' bindtap='sureChoiceCouponTap'>确认</view>
+  </view>
+</action-sheet>
