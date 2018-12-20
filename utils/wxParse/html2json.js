@@ -102,22 +102,15 @@ function html2json(html, bindName) {
           var value = attr.value;
           if (name == 'class') {
             console.dir(value);
-            //  value = value.join("")
-            node.classStr = value;
           }
           // has multi attibutes
           // make it array of attribute
           if (name == 'style') {
-            console.dir(value);
-            //  value = value.join("")
             node.styleStr = value;
           }
           if (value.match(/ /)) {
             value = value.split(' ');
           }
-
-          // if attr already exists
-          // merge it
           if (pre[name]) {
             if (Array.isArray(pre[name])) {
               // already array, push to last

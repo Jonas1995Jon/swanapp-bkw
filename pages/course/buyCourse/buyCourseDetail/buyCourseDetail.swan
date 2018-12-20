@@ -44,9 +44,12 @@
 	<view class='buycourse_detail'>
 		<block s-if="{{wap_coursedetail.nodes.length > 0}}">
 			<view class='detail_title'>购买课程</view>
-			<view class='detail_image'>
-				<template is="wxParse" data="{{{wxParseData:wap_coursedetail.nodes}}}" />
-			</view>
+			<template is="wxParse" data="{{{wxParseData:wap_coursedetail.nodes}}}" />
+			<!-- <block s-key="imgArr" s-for="img, index in imgArr">
+				<view class='detail_image'>					
+					<image src="{{img}}" style="width: 100%"></image>
+				</view>
+			</block> -->
 		</block>
 	</view>
 
@@ -62,6 +65,8 @@
 	</view>
 	<view bindtap='buyImmediatelyTap' class='buy_right'>立即购买</view>
 </view>
+
+<view class="modal-mask" bindtap="hideMasking" hidden="{{hiddenMasking}}"></view>
 <action-sheet>
 	<view class='choiceCourse' hidden="{{choiceCourseHidden}}" bindchange="actionSheetbindchange1">
 		<view class='title'>选择科目</view>

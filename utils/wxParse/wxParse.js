@@ -92,7 +92,9 @@ function calMoreImageInfo(e, idx, that, bindName) {
   // that.setData(bindData);
   var index = temImages[idx].index;
   var key = `${bindName}`;
-  for (var i of index.split('.')) key += `.nodes[${i}]`;
+  for (var i of index.split('.')) {
+    key += `.nodes[${i}]`;
+  }
   var keyW = key + '.width';
   var keyH = key + '.height';
   that.setData({

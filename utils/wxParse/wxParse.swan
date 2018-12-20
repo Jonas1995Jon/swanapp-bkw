@@ -18,7 +18,7 @@
 </template>
 
 <template name="wxParseImg">
-  <image class="{{item.classStr}} wxParse-{{item.tag}}" data-from="{{item.from}}" data-src="{{item.attr.src}}" data-idx="{{item.imgIndex}}" src="{{item.attr.src}}" mode="aspectFit" bindload="wxParseImgLoad" bindtap="wxParseImgTap" style="width:{{item.width}}px;" />
+  <image class="{{item.classStr}} wxParse-{{item.tag}}" data-from="{{item.from}}" data-src="{{item.attr.src}}" data-idx="{{item.imgIndex}}" src="{{item.attr.src}}" mode="widthFix" bindload="wxParseImgLoad" bindtap="wxParseImgTap" style="width:100%; height:auto;" />
 </template>
 
 <template name="WxEmojiView">
@@ -100,30 +100,30 @@
 
     <block s-elif="item.tag == 'br'">
       <template is="WxParseBr"></template>
-    </block>
-    <!--其他块级标签-->
-    <block s-elif="item.tagType == 'block'">
-      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
-        <block s-for="item, index in item.nodes" s-key>
-          <template is="wxParse1" data="{{{item}}}" />
-        </block>
-      </view>
-    </block>
+</block>
+<!--其他块级标签-->
+<block s-elif="item.tagType == 'block'">
+	<view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+		<block s-for="item, index in item.nodes" s-key>
+			<template is="wxParse1" data="{{{item}}}" />
+		</block>
+	</view>
+</block>
 
-    <!--内联标签-->
-    <view s-else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
-      <block s-for="item, index in item.nodes" s-key>
-        <template is="wxParse1" data="{{{item}}}" />
-      </block>
-    </view>
+<!--内联标签-->
+<view s-else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+	<block s-for="item, index in item.nodes" s-key>
+		<template is="wxParse1" data="{{{item}}}" />
+	</block>
+</view>
 
-  </block>
+</block>
 
-  <!--判断是否是文本节点-->
-  <block s-elif="item.node == 'text'">
-    <!--如果是，直接进行-->
-    <template is="WxEmojiView" data="{{{item}}}" />
-  </block>
+<!--判断是否是文本节点-->
+<block s-elif="item.node == 'text'">
+	<!--如果是，直接进行-->
+	<template is="WxEmojiView" data="{{{item}}}" />
+</block>
 
 </template>
 
@@ -178,30 +178,30 @@
 
     <block s-elif="item.tag == 'br'">
       <template is="WxParseBr"></template>
-    </block>
-    <!--其他块级标签-->
-    <block s-elif="item.tagType == 'block'">
-      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
-        <block s-for="item, index in item.nodes" s-key>
-          <template is="wxParse2" data="{{{item}}}" />
-        </block>
-      </view>
-    </block>
+</block>
+<!--其他块级标签-->
+<block s-elif="item.tagType == 'block'">
+	<view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+		<block s-for="item, index in item.nodes" s-key>
+			<template is="wxParse2" data="{{{item}}}" />
+		</block>
+	</view>
+</block>
 
-    <!--内联标签-->
-    <view s-else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
-      <block s-for="item, index in item.nodes" s-key>
-        <template is="wxParse2" data="{{{item}}}" />
-      </block>
-    </view>
+<!--内联标签-->
+<view s-else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+	<block s-for="item, index in item.nodes" s-key>
+		<template is="wxParse2" data="{{{item}}}" />
+	</block>
+</view>
 
-  </block>
+</block>
 
-  <!--判断是否是文本节点-->
-  <block s-elif="item.node == 'text'">
-    <!--如果是，直接进行-->
-    <template is="WxEmojiView" data="{{{item}}}" />
-  </block>
+<!--判断是否是文本节点-->
+<block s-elif="item.node == 'text'">
+	<!--如果是，直接进行-->
+	<template is="WxEmojiView" data="{{{item}}}" />
+</block>
 
 </template>
 
@@ -255,30 +255,30 @@
 
     <block s-elif="item.tag == 'br'">
       <template is="WxParseBr"></template>
-    </block>
-    <!--其他块级标签-->
-    <block s-elif="item.tagType == 'block'">
-      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
-        <block s-for="item, index in item.nodes" s-key>
-          <template is="wxParse3" data="{{{item}}}" />
-        </block>
-      </view>
-    </block>
+</block>
+<!--其他块级标签-->
+<block s-elif="item.tagType == 'block'">
+	<view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+		<block s-for="item, index in item.nodes" s-key>
+			<template is="wxParse3" data="{{{item}}}" />
+		</block>
+	</view>
+</block>
 
-    <!--内联标签-->
-    <view s-else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
-      <block s-for="item, index in item.nodes" s-key>
-        <template is="wxParse3" data="{{{item}}}" />
-      </block>
-    </view>
+<!--内联标签-->
+<view s-else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+	<block s-for="item, index in item.nodes" s-key>
+		<template is="wxParse3" data="{{{item}}}" />
+	</block>
+</view>
 
-  </block>
+</block>
 
-  <!--判断是否是文本节点-->
-  <block s-elif="item.node == 'text'">
-    <!--如果是，直接进行-->
-    <template is="WxEmojiView" data="{{{item}}}" />
-  </block>
+<!--判断是否是文本节点-->
+<block s-elif="item.node == 'text'">
+	<!--如果是，直接进行-->
+	<template is="WxEmojiView" data="{{{item}}}" />
+</block>
 
 </template>
 
@@ -331,30 +331,30 @@
 
     <block s-elif="item.tag == 'br'">
       <template is="WxParseBr"></template>
-    </block>
-    <!--其他块级标签-->
-    <block s-elif="item.tagType == 'block'">
-      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
-        <block s-for="item, index in item.nodes" s-key>
-          <template is="wxParse4" data="{{{item}}}" />
-        </block>
-      </view>
-    </block>
+</block>
+<!--其他块级标签-->
+<block s-elif="item.tagType == 'block'">
+	<view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+		<block s-for="item, index in item.nodes" s-key>
+			<template is="wxParse4" data="{{{item}}}" />
+		</block>
+	</view>
+</block>
 
-    <!--内联标签-->
-    <view s-else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
-      <block s-for="item, index in item.nodes" s-key>
-        <template is="wxParse4" data="{{{item}}}" />
-      </block>
-    </view>
+<!--内联标签-->
+<view s-else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+	<block s-for="item, index in item.nodes" s-key>
+		<template is="wxParse4" data="{{{item}}}" />
+	</block>
+</view>
 
-  </block>
+</block>
 
-  <!--判断是否是文本节点-->
-  <block s-elif="item.node == 'text'">
-    <!--如果是，直接进行-->
-    <template is="WxEmojiView" data="{{{item}}}" />
-  </block>
+<!--判断是否是文本节点-->
+<block s-elif="item.node == 'text'">
+	<!--如果是，直接进行-->
+	<template is="WxEmojiView" data="{{{item}}}" />
+</block>
 
 </template>
 
@@ -407,30 +407,30 @@
 
     <block s-elif="item.tag == 'br'">
       <template is="WxParseBr"></template>
-    </block>
-    <!--其他块级标签-->
-    <block s-elif="item.tagType == 'block'">
-      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
-        <block s-for="item, index in item.nodes" s-key>
-          <template is="wxParse5" data="{{{item}}}" />
-        </block>
-      </view>
-    </block>
+</block>
+<!--其他块级标签-->
+<block s-elif="item.tagType == 'block'">
+	<view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+		<block s-for="item, index in item.nodes" s-key>
+			<template is="wxParse5" data="{{{item}}}" />
+		</block>
+	</view>
+</block>
 
-    <!--内联标签-->
-    <view s-else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
-      <block s-for="item, index in item.nodes" s-key>
-        <template is="wxParse5" data="{{{item}}}" />
-      </block>
-    </view>
+<!--内联标签-->
+<view s-else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+	<block s-for="item, index in item.nodes" s-key>
+		<template is="wxParse5" data="{{{item}}}" />
+	</block>
+</view>
 
-  </block>
+</block>
 
-  <!--判断是否是文本节点-->
-  <block s-elif="item.node == 'text'">
-    <!--如果是，直接进行-->
-    <template is="WxEmojiView" data="{{{item}}}" />
-  </block>
+<!--判断是否是文本节点-->
+<block s-elif="item.node == 'text'">
+	<!--如果是，直接进行-->
+	<template is="WxEmojiView" data="{{{item}}}" />
+</block>
 
 </template>
 
@@ -483,30 +483,30 @@
 
     <block s-elif="item.tag == 'br'">
       <template is="WxParseBr"></template>
-    </block>
-    <!--其他块级标签-->
-    <block s-elif="item.tagType == 'block'">
-      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
-        <block s-for="item, index in item.nodes" s-key>
-          <template is="wxParse6" data="{{{item}}}" />
-        </block>
-      </view>
-    </block>
+</block>
+<!--其他块级标签-->
+<block s-elif="item.tagType == 'block'">
+	<view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+		<block s-for="item, index in item.nodes" s-key>
+			<template is="wxParse6" data="{{{item}}}" />
+		</block>
+	</view>
+</block>
 
-    <!--内联标签-->
-    <view s-else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
-      <block s-for="item, index in item.nodes" s-key>
-        <template is="wxParse6" data="{{{item}}}" />
-      </block>
-    </view>
+<!--内联标签-->
+<view s-else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+	<block s-for="item, index in item.nodes" s-key>
+		<template is="wxParse6" data="{{{item}}}" />
+	</block>
+</view>
 
-  </block>
+</block>
 
-  <!--判断是否是文本节点-->
-  <block s-elif="item.node == 'text'">
-    <!--如果是，直接进行-->
-    <template is="WxEmojiView" data="{{{item}}}" />
-  </block>
+<!--判断是否是文本节点-->
+<block s-elif="item.node == 'text'">
+	<!--如果是，直接进行-->
+	<template is="WxEmojiView" data="{{{item}}}" />
+</block>
 
 </template>
 
@@ -559,30 +559,30 @@
 
     <block s-elif="item.tag == 'br'">
       <template is="WxParseBr"></template>
-    </block>
-    <!--其他块级标签-->
-    <block s-elif="item.tagType == 'block'">
-      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
-        <block s-for="item, index in item.nodes" s-key>
-          <template is="wxParse7" data="{{{item}}}" />
-        </block>
-      </view>
-    </block>
+</block>
+<!--其他块级标签-->
+<block s-elif="item.tagType == 'block'">
+	<view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+		<block s-for="item, index in item.nodes" s-key>
+			<template is="wxParse7" data="{{{item}}}" />
+		</block>
+	</view>
+</block>
 
-    <!--内联标签-->
-    <view s-else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
-      <block s-for="item, index in item.nodes" s-key>
-        <template is="wxParse7" data="{{{item}}}" />
-      </block>
-    </view>
+<!--内联标签-->
+<view s-else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+	<block s-for="item, index in item.nodes" s-key>
+		<template is="wxParse7" data="{{{item}}}" />
+	</block>
+</view>
 
-  </block>
+</block>
 
-  <!--判断是否是文本节点-->
-  <block s-elif="item.node == 'text'">
-    <!--如果是，直接进行-->
-    <template is="WxEmojiView" data="{{{item}}}" />
-  </block>
+<!--判断是否是文本节点-->
+<block s-elif="item.node == 'text'">
+	<!--如果是，直接进行-->
+	<template is="WxEmojiView" data="{{{item}}}" />
+</block>
 
 </template>
 <!--循环模版-->
@@ -634,30 +634,30 @@
 
     <block s-elif="item.tag == 'br'">
       <template is="WxParseBr"></template>
-    </block>
-    <!--其他块级标签-->
-    <block s-elif="item.tagType == 'block'">
-      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
-        <block s-for="item, index in item.nodes" s-key>
-          <template is="wxParse8" data="{{{item}}}" />
-        </block>
-      </view>
-    </block>
+</block>
+<!--其他块级标签-->
+<block s-elif="item.tagType == 'block'">
+	<view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+		<block s-for="item, index in item.nodes" s-key>
+			<template is="wxParse8" data="{{{item}}}" />
+		</block>
+	</view>
+</block>
 
-    <!--内联标签-->
-    <view s-else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
-      <block s-for="item, index in item.nodes" s-key>
-        <template is="wxParse8" data="{{{item}}}" />
-      </block>
-    </view>
+<!--内联标签-->
+<view s-else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+	<block s-for="item, index in item.nodes" s-key>
+		<template is="wxParse8" data="{{{item}}}" />
+	</block>
+</view>
 
-  </block>
+</block>
 
-  <!--判断是否是文本节点-->
-  <block s-elif="item.node == 'text'">
-    <!--如果是，直接进行-->
-    <template is="WxEmojiView" data="{{{item}}}" />
-  </block>
+<!--判断是否是文本节点-->
+<block s-elif="item.node == 'text'">
+	<!--如果是，直接进行-->
+	<template is="WxEmojiView" data="{{{item}}}" />
+</block>
 
 </template>
 
@@ -710,30 +710,30 @@
 
     <block s-elif="item.tag == 'br'">
       <template is="WxParseBr"></template>
-    </block>
-    <!--其他块级标签-->
-    <block s-elif="item.tagType == 'block'">
-      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
-        <block s-for="item, index in item.nodes" s-key>
-          <template is="wxParse9" data="{{{item}}}" />
-        </block>
-      </view>
-    </block>
+</block>
+<!--其他块级标签-->
+<block s-elif="item.tagType == 'block'">
+	<view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+		<block s-for="item, index in item.nodes" s-key>
+			<template is="wxParse9" data="{{{item}}}" />
+		</block>
+	</view>
+</block>
 
-    <!--内联标签-->
-    <view s-else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
-      <block s-for="item, index in item.nodes" s-key>
-        <template is="wxParse9" data="{{{item}}}" />
-      </block>
-    </view>
+<!--内联标签-->
+<view s-else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+	<block s-for="item, index in item.nodes" s-key>
+		<template is="wxParse9" data="{{{item}}}" />
+	</block>
+</view>
 
-  </block>
+</block>
 
-  <!--判断是否是文本节点-->
-  <block s-elif="item.node == 'text'">
-    <!--如果是，直接进行-->
-    <template is="WxEmojiView" data="{{{item}}}" />
-  </block>
+<!--判断是否是文本节点-->
+<block s-elif="item.node == 'text'">
+	<!--如果是，直接进行-->
+	<template is="WxEmojiView" data="{{{item}}}" />
+</block>
 
 </template>
 
@@ -786,30 +786,30 @@
 
     <block s-elif="item.tag == 'br'">
       <template is="WxParseBr"></template>
-    </block>
-    <!--其他块级标签-->
-    <block s-elif="item.tagType == 'block'">
-      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
-        <block s-for="item, index in item.nodes" s-key>
-          <template is="wxParse10" data="{{{item}}}" />
-        </block>
-      </view>
-    </block>
+</block>
+<!--其他块级标签-->
+<block s-elif="item.tagType == 'block'">
+	<view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+		<block s-for="item, index in item.nodes" s-key>
+			<template is="wxParse10" data="{{{item}}}" />
+		</block>
+	</view>
+</block>
 
-    <!--内联标签-->
-    <view s-else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
-      <block s-for="item, index in item.nodes" s-key>
-        <template is="wxParse10" data="{{{item}}}" />
-      </block>
-    </view>
+<!--内联标签-->
+<view s-else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+	<block s-for="item, index in item.nodes" s-key>
+		<template is="wxParse10" data="{{{item}}}" />
+	</block>
+</view>
 
-  </block>
+</block>
 
-  <!--判断是否是文本节点-->
-  <block s-elif="item.node == 'text'">
-    <!--如果是，直接进行-->
-    <template is="WxEmojiView" data="{{{item}}}" />
-  </block>
+<!--判断是否是文本节点-->
+<block s-elif="item.node == 'text'">
+	<!--如果是，直接进行-->
+	<template is="WxEmojiView" data="{{{item}}}" />
+</block>
 
 </template>
 
@@ -862,30 +862,30 @@
 
     <block s-elif="item.tag == 'br'">
       <template is="WxParseBr"></template>
-    </block>
-    <!--其他块级标签-->
-    <block s-elif="item.tagType == 'block'">
-      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
-        <block s-for="item, index in item.nodes" s-key>
-          <template is="wxParse11" data="{{{item}}}" />
-        </block>
-      </view>
-    </block>
+</block>
+<!--其他块级标签-->
+<block s-elif="item.tagType == 'block'">
+	<view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+		<block s-for="item, index in item.nodes" s-key>
+			<template is="wxParse11" data="{{{item}}}" />
+		</block>
+	</view>
+</block>
 
-    <!--内联标签-->
-    <view s-else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
-      <block s-for="item, index in item.nodes" s-key>
-        <template is="wxParse11" data="{{{item}}}" />
-      </block>
-    </view>
+<!--内联标签-->
+<view s-else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+	<block s-for="item, index in item.nodes" s-key>
+		<template is="wxParse11" data="{{{item}}}" />
+	</block>
+</view>
 
-  </block>
+</block>
 
-  <!--判断是否是文本节点-->
-  <block s-elif="item.node == 'text'">
-    <!--如果是，直接进行-->
-    <template is="WxEmojiView" data="{{{item}}}" />
-  </block>
+<!--判断是否是文本节点-->
+<block s-elif="item.node == 'text'">
+	<!--如果是，直接进行-->
+	<template is="WxEmojiView" data="{{{item}}}" />
+</block>
 
 </template>
 
@@ -938,29 +938,29 @@
 
     <block s-elif="item.tag == 'br'">
       <template is="WxParseBr"></template>
-    </block>
-    <!--其他块级标签-->
-    <block s-elif="item.tagType == 'block'">
-      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
-        <block s-for="item, index in item.nodes" s-key>
-          <template is="wxParse12" data="{{{item}}}" />
-        </block>
-      </view>
-    </block>
+</block>
+<!--其他块级标签-->
+<block s-elif="item.tagType == 'block'">
+	<view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+		<block s-for="item, index in item.nodes" s-key>
+			<template is="wxParse12" data="{{{item}}}" />
+		</block>
+	</view>
+</block>
 
-    <!--内联标签-->
-    <view s-else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
-      <block s-for="item, index in item.nodes" s-key>
-        <template is="wxParse12" data="{{{item}}}" />
-      </block>
-    </view>
+<!--内联标签-->
+<view s-else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
+	<block s-for="item, index in item.nodes" s-key>
+		<template is="wxParse12" data="{{{item}}}" />
+	</block>
+</view>
 
-  </block>
+</block>
 
-  <!--判断是否是文本节点-->
-  <block s-elif="item.node == 'text'">
-    <!--如果是，直接进行-->
-    <template is="WxEmojiView" data="{{{item}}}" />
-  </block>
+<!--判断是否是文本节点-->
+<block s-elif="item.node == 'text'">
+	<!--如果是，直接进行-->
+	<template is="WxEmojiView" data="{{{item}}}" />
+</block>
 
 </template>

@@ -18,6 +18,7 @@ Page({
       centerBtn: 0,
       centerBtnTitle: '购买课程'
     },
+    hiddenMasking: true,
     choiceCourseHidden: true,
     choiceBanxingHidden: true
   },
@@ -50,32 +51,32 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {},
+  onReady: function () { },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {},
+  onShow: function () { },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {},
+  onHide: function () { },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {},
+  onUnload: function () { },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {},
+  onPullDownRefresh: function () { },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {},
+  onReachBottom: function () { },
 
   /**
    * 用户点击右上角分享
@@ -162,6 +163,20 @@ Page({
               }
             }
           }
+
+          // 把得到的图片字符串组装成数组
+          // let patt = /http[s]:\/\/.*\.jpg/;
+          // let strArr = data.wap_coursedetail.split(' ');
+          // let result;
+          // let imgArr = [];
+          // for (i =0; i < strArr.length; i++) {
+          //   result = strArr[i].match(patt);
+          //   if (result != null) {
+          //     imgArr.push(result[0]);
+          //   }
+          // }
+          // this.setData({imgArr: imgArr});
+
           WxParse.wxParse('wap_coursedetail', 'html', data.wap_coursedetail, this, 5);
           WxParse.wxParse('faq', 'html', data.faq, this, 5);
           WxParse.wxParse('coursedetail', 'html', data.coursedetail, this, 5);
@@ -188,8 +203,8 @@ Page({
         } else {
           swan.showToast({
             title: data.errmsg,
-              icon: 'success',
-              duration: 1500
+            icon: 'success',
+            duration: 1500
           });
         }
       }
@@ -210,14 +225,23 @@ Page({
       }
     });
   },
+  hideMasking() {
+    this.setData({
+      hiddenMasking: true,
+      choiceCourseHidden: true,
+      choiceBanxingHidden: true
+    });
+  },
   courseActionSheetTap: function () {
     this.setData({
-      choiceCourseHidden: !this.data.choiceCourseHidden
+      choiceCourseHidden: !this.data.choiceCourseHidden,
+      hiddenMasking: false
     });
   },
   banxingActionSheetTap: function () {
     this.setData({
-      choiceBanxingHidden: !this.data.choiceBanxingHidden
+      choiceBanxingHidden: !this.data.choiceBanxingHidden,
+      hiddenMasking: false
     });
   },
   actionSheetbindchange1: function () {
@@ -235,6 +259,13 @@ Page({
   courseChoiceTap: function (event) {
     var index = event.currentTarget.dataset.index;
     var courseid = event.currentTarget.dataset.courseid;
+    for (var i = 0; i < this.data.courselist.length; i++) {
+      for (var j = 0; j < this.data.courselist[i].banxinglist.length; j++) {
+        if (this.data.courselist[i].banxinglist[j].selected == 1) {
+          this.data.commoditydetail.banxing = j;
+        }
+      }
+    }
     if (courseid == -1) {
       if (this.data.courselist[0].selected == 0) {
         this.data.courselist[0].selected = 1;
@@ -258,15 +289,19 @@ Page({
         this.data.courselist[index].banxinglist[this.data.commoditydetail.banxing].selected = 0;
       }
       var selectedCount = 0;
+      var courselistlength = this.data.courselist.length;
       for (var i = this.data.courselist.length - 1; i > 0; i--) {
-        if (this.data.courselist[i].selected == 0) {
-          this.data.courselist[0].selected = 0;
-          this.data.courselist[0].banxinglist[this.data.commoditydetail.banxing].selected = 0;
-        } else {
-          selectedCount++;
+        if (this.data.courselist[0].courseid == -1) {
+          courselistlength = this.data.courselist.length - 1;
+          if (this.data.courselist[i].selected == 0) {
+            this.data.courselist[0].selected = 0;
+            this.data.courselist[0].banxinglist[this.data.commoditydetail.banxing].selected = 0;
+          } else {
+            selectedCount++;
+          }
         }
       }
-      if (selectedCount == this.data.courselist.length - 1) {
+      if (selectedCount == courselistlength) {
         this.data.courselist[0].selected = 1;
         this.data.courselist[0].banxinglist[this.data.commoditydetail.banxing].selected = 1;
       }
@@ -276,9 +311,6 @@ Page({
   sureChoiceTap: function (event) {
     this.data.commoditydetail.courselist = this.data.courselist;
     this.setData({ commoditydetail: this.data.commoditydetail });
-    this.setData({
-      choiceCourseHidden: !this.data.choiceCourseHidden
-    });
     var commodityid = "";
     var totalprice = 0;
     var courselistSelected = [];
@@ -287,31 +319,43 @@ Page({
         courselistSelected.push(this.data.courselist[i]);
       }
     }
-    if (courselistSelected.length == 1 || courselistSelected[0].courseid == -1 && courselistSelected[0].selected == 1) {
-      commodityid = courselistSelected[0].banxinglist[this.data.commoditydetail.banxing].id;
-      // console.log(commodityid);
-      this.commoditydetail(commodityid);
-      this.setData({ selectedCourseid: courselistSelected[0].courseid });
-    } else {
-      for (var i = 0; i < courselistSelected.length; i++) {
-        for (var j = 0; j < courselistSelected[i].banxinglist.length; j++) {
-          if (courselistSelected[i].banxinglist[j].selected == 1 && courselistSelected[i].selected == 1) {
-            this.setData({ selectedCourseid: courselistSelected[i].courseid });
-            totalprice = parseFloat(totalprice) + parseFloat(courselistSelected[i].banxinglist[j].price);
-            if (i == 0 || i == courselistSelected.length) {
-              commodityid = commodityid + courselistSelected[i].banxinglist[j].id;
-            } else {
-              commodityid = commodityid + "|" + courselistSelected[i].banxinglist[j].id;
+    if (courselistSelected.length >= 1) {
+      this.setData({
+        choiceCourseHidden: !this.data.choiceCourseHidden,
+        hiddenMasking: true
+      });
+      if (courselistSelected.length == 1 || courselistSelected[0].courseid == -1 && courselistSelected[0].selected == 1) {
+        commodityid = courselistSelected[0].banxinglist[this.data.commoditydetail.banxing].id;
+        // console.log(commodityid);
+        this.commoditydetail(commodityid);
+        this.setData({ selectedCourseid: courselistSelected[0].courseid });
+      } else {
+        for (var i = 0; i < courselistSelected.length; i++) {
+          for (var j = 0; j < courselistSelected[i].banxinglist.length; j++) {
+            if (courselistSelected[i].banxinglist[j].selected == 1 && courselistSelected[i].selected == 1) {
+              this.setData({ selectedCourseid: courselistSelected[i].courseid });
+              totalprice = parseFloat(totalprice) + parseFloat(courselistSelected[i].banxinglist[j].price);
+              if (i == 0 || i == courselistSelected.length) {
+                commodityid = commodityid + courselistSelected[i].banxinglist[j].id;
+              } else {
+                commodityid = commodityid + "|" + courselistSelected[i].banxinglist[j].id;
+              }
             }
           }
         }
+        // console.log(totalprice);
+        this.data.commoditydetail.price = totalprice;
+        this.data.commoditydetail.costprice = totalprice;
+        // console.log(commodityid);
+        this.data.commoditydetail.id = commodityid;
+        this.setData({ commoditydetail: this.data.commoditydetail });
       }
-      // console.log(totalprice);
-      this.data.commoditydetail.price = totalprice;
-      this.data.commoditydetail.costprice = totalprice;
-      // console.log(commodityid);
-      this.data.commoditydetail.id = commodityid;
-      this.setData({ commoditydetail: this.data.commoditydetail });
+    } else {
+      swan.showToast({
+        title: '请先选择科目!',
+        icon: 'success',
+        duration: 1500
+      })
     }
   },
   banxingChoiceTap: function (event) {
@@ -345,13 +389,22 @@ Page({
     this.setData({ courseIndex: courseIndex });
     this.setData({ banxingIndex: banxingIndex });
     this.setData({ courselist: this.data.courselist });
+    swan.setStorageSync('banxingIndex', banxingIndex);
   },
   sureChoiceBanxingTap: function () {
     this.setData({
-      choiceBanxingHidden: !this.data.choiceBanxingHidden
+      choiceBanxingHidden: !this.data.choiceBanxingHidden,
+      hiddenMasking: true
     });
     if (this.data.courselist[0].selected == 1) {
-      console.log(this.data.courselist[0].banxinglist);
+      if (this.data.banxingIndex == undefined) {
+        let banxingIndex = swan.getStorageSync('banxingIndex');
+        if (banxingIndex == "" || banxingIndex == undefined) {
+          this.setData({ banxingIndex: 0 });
+        } else {
+          this.setData({ banxingIndex: banxingIndex });
+        }
+      }
       var commodityid = this.data.courselist[0].banxinglist[this.data.banxingIndex].id;
       // console.log(commodityid);
       this.commoditydetail(commodityid);
@@ -433,8 +486,8 @@ Page({
         } else {
           swan.showToast({
             title: data.errmsg,
-              icon: 'success',
-              duration: 1500
+            icon: 'success',
+            duration: 1500
           });
         }
       }

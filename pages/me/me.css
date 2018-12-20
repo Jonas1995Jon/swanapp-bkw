@@ -43,7 +43,7 @@ page {
   font-size: 26rpx;
 }
 .type{
-  position: fixed;
+  position: absolute;
   right: 28rpx;
   color: #dfdfdf;
 }

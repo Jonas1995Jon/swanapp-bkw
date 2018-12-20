@@ -105,11 +105,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // swan.getSwanId({
-    //   success: function (res) {
-    //     console.log(res.data.swanid);
-    //   }
-    // });
     swan.setNavigationBarTitle({
       title: '我'
     });
@@ -239,7 +234,7 @@ Page({
       var nickName = userInfo.nickName;
       var avatarUrl = userInfo.avatarUrl;
       var gender = userInfo.gender; //性别 0：未知、1：男、2：女
-            
+
       request.request_thirdauth(0);
       swan.navigateTo({
         url: 'account/account'

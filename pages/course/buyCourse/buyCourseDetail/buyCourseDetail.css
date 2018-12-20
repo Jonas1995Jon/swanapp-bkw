@@ -8,6 +8,9 @@ Page {
   overflow-x: hidden;
   overflow-y: auto;
 }
+body {
+  background: #f0eff4;
+}
 .buycourse_detail{
   width: 100%;
   margin: 0 auto;
@@ -23,7 +26,6 @@ Page {
   background: #fff;
   padding-left: 20rpx;
   padding-right: 20rpx;
-  margin-top:-5rpx;
 }
 .buycourse_classdes{
   width: 710rpx;
@@ -53,23 +55,21 @@ Page {
   text-decoration:line-through;
 }
 .buycourse_classcontent{
-  width: 100%;
-  overflow: hidden;
-  padding-top: 50rpx;
-  padding-bottom: 50rpx;
-}
-.buycourse_classcontent{
   width: 710rpx;
   margin: 0 auto;
   color: #666666;
   font-size: 30rpx;
-  line-height: 50rpx;
+  line-height: 56rpx;
+  overflow: hidden;
+  padding-top: 50rpx;
+  padding-bottom: 50rpx;
 }
 .buycourse_classtype image{
   width: 32rpx;
   height: 38rpx;
   position: relative;
   top:8rpx;
+  padding-right: 10rpx;
 }
 .buycourse_type{
   background: #fff;
@@ -202,6 +202,7 @@ Page {
   position: fixed;
   bottom: 0rpx;
   opacity: 1;
+  z-index: 9999
 }
 .choiceCourse .title{
   width: 750rpx;
@@ -242,4 +243,16 @@ Page {
   color: #fff;
   font-size: 32rpx;
   background: #279df7;
+}
+.modal-mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.5;
+  overflow: hidden;
+  z-index: 9000;
+  color: #fff;
 }
