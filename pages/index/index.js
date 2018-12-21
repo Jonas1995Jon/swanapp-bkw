@@ -93,7 +93,7 @@ Page({
     //切换课程两种情况1、从我的课程进入2、从选择分类进入
     var courseidSNC = swan.getStorageSync('courseid');
     // console.log(courseid + "////" + courseidSNC);
-    if (courseid != courseidSNC && courseid != undefined || bk_userinfo.sessionid != sessionid) {
+    if (courseid != courseidSNC && courseid != undefined || bk_userinfo.sessionid != sessionid || this.data.refresh == true) {
       if (bk_userinfo.sessionid != null && bk_userinfo.sessionid != '' && bk_userinfo.sessionid != undefined) {
         sessionid = bk_userinfo.sessionid;
         uid = bk_userinfo.uid;

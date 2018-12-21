@@ -121,7 +121,7 @@
 					</view>
 					<view class='answer_wrap'>
 						<checkbox-group bindchange="checkboxChange" data-hi="{{questionindex}}">
-							<label s-key="singleOption" s-for="answerArr[paperindex].optionArr" s-for-item="singleOption" s-for-index="singleOptionIndex">
+							<label s-key="singleOption" s-for="answerArr[questionindex].optionArr" s-for-item="singleOption" s-for-index="singleOptionIndex">
 								<view class='answer_list'>
 									<checkbox value="{{singleOptionIndex}}|{{singleOption.option}}|{{singleOption.optionId}}" checked='{{singleOption.optionChecked == 1 ? true : false}}' />
 									<block s-if="singleOption.optionChecked == 1">
