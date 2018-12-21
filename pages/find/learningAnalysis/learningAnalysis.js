@@ -76,37 +76,37 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {},
+  onReady: function () { },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {},
+  onShow: function () { },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {},
+  onHide: function () { },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {},
+  onUnload: function () { },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {},
+  onPullDownRefresh: function () { },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {},
+  onReachBottom: function () { },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {},
+  onShareAppMessage: function () { },
   // //swiper滑动
   // handleChange: function (e) {
   //   var current = e.detail.current;
@@ -136,8 +136,8 @@ Page({
   },
   // tab点击事件
   switchTabClick: function (event) {
-    var index = event.currentTarget.dataset.index;
-
+    let index = event.currentTarget.dataset.index;
+    let trend;
     switch (index) {
       case 0:
         var score = parseInt(this.data.analysis.stats.score / this.data.analysis.stats.avgscore);
@@ -149,6 +149,7 @@ Page({
         this.setData({ cicleSymbol: '分' }); //默认能力值，tab切换后变化
         this.setData({ avgscore: this.data.analysis.stats.avgscore + '分' });
         this.setData({ paiming: this.data.analysis.stats.paiming });
+        trend = this.data.analysis.stats.trend;
         break;
       case 1:
         // var answertimes = answertimes / avgtimes;
@@ -157,6 +158,7 @@ Page({
         this.setData({ cicleSymbol: '%' }); //默认能力值，tab切换后变化
         this.setData({ avgscore: this.data.analysis.master.avgscore + '%' });
         this.setData({ paiming: this.data.analysis.master.paiming });
+        trend = this.data.analysis.answer.trend;
         break;
       case 2:
         var answertimes = parseInt(this.data.analysis.answer.answertimes / this.data.analysis.answer.avgtimes);
@@ -168,6 +170,7 @@ Page({
         this.setData({ cicleSymbol: '道' }); //默认能力值，tab切换后变化
         this.setData({ avgscore: this.data.analysis.answer.avgtimes + '道' });
         this.setData({ paiming: this.data.analysis.answer.paiming });
+        trend = this.data.analysis.accuracy.trend;
         break;
       case 3:
         this.setData({ correct_rate: this.data.analysis.accuracy.accuracy }); //默认能力值，tab切换后变化
@@ -175,6 +178,7 @@ Page({
         this.setData({ cicleSymbol: '%' }); //默认能力值，tab切换后变化
         this.setData({ avgscore: this.data.analysis.accuracy.avgaccuracy + '%' });
         this.setData({ paiming: this.data.analysis.accuracy.paiming });
+        trend = this.data.analysis.master.trend;
         break;
       default:
         break;
@@ -190,6 +194,15 @@ Page({
     this.setData({ lineCanvasArr: this.data.lineCanvasArr });
     this.setData({ tabindex: index });
     this.drawCicle();
+    let lineCanvasArr = this.data.lineCanvasArr;
+    for (let i = 0; i < lineCanvasArr.length; i++) {
+      let id = lineCanvasArr[index].id.substring(10);
+      if (id == '') {
+        this.makeChartsData(trend, 'lineCanvas', 0);
+      } else {
+        this.makeChartsData(trend, 'lineCanvas' + id, parseInt(id));
+      }
+    }
   },
   mystats: function (paperid, unitid, learnType, free) {
     var endtimeStamp = Date.parse(new Date());
@@ -226,9 +239,9 @@ Page({
 
           // 组装图表数据
           this.makeChartsData(data.stats.trend, 'lineCanvas', 0);
-          this.makeChartsData(data.answer.trend, 'lineCanvas1', 1);
-          this.makeChartsData(data.accuracy.trend, 'lineCanvas2', 2);
-          this.makeChartsData(data.master.trend, 'lineCanvas3', 3);
+          // this.makeChartsData(data.answer.trend, 'lineCanvas1', 1);
+          // this.makeChartsData(data.accuracy.trend, 'lineCanvas2', 2);
+          // this.makeChartsData(data.master.trend, 'lineCanvas3', 3);
 
           var data;
           for (var i = 0; i < 4; i++) {
@@ -286,7 +299,7 @@ Page({
       } else if (switchTabIndex == 2) {
         trendsData.push(trendCopy[i].accuracy);
       }
-      this.drawCharts(chartsId, trendCategories, this.data.switchTabArr[switchTabIndex], trendsData, this.data.clientWidth, this.data.clientHeight / 3 - 10);
+      this.drawCharts(chartsId, trendCategories, this.data.switchTabArr[switchTabIndex], trendsData, this.data.clientWidth, this.data.clientHeight / 3 - 2);
     }
   },
   drawCharts: function (canvasId, categories, name, data, windowWidth, windowHeight) {

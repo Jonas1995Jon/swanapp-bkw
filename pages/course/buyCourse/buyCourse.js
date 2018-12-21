@@ -157,16 +157,11 @@ Page({
       }
     });
   },
-  //生成微信订单
+  //生成订单
   createpayorder: function () {
     if (parseFloat(this.data.price) != parseFloat(this.data.totalprice) && this.data.checkorder == 0) {
       this.checkorder();
     } else {
-      //测试代码
-      // interval = setInterval(function () {
-      //   that.checkState();
-      //   //循环执行代码  
-      // }, 3000) //循环时间 这里是3秒
       var that = this;
       var bk_userinfo = swan.getStorageSync('bk_userinfo');
       var sessionid = bk_userinfo.sessionid;
@@ -179,7 +174,6 @@ Page({
           orderguid: this.data.orderguid,
           orderid: this.data.orderid,
           orderprice: this.data.price,
-          // orderprice: 0.01,
           gateway: app.globalData.gateway,
           market: app.globalData.market
         },
@@ -190,7 +184,8 @@ Page({
             var out_trade_no = data.out_trade_no;
             this.setData({ out_trade_no: out_trade_no });
             //生成同一订单成功后调用微信支付
-            this.weixinpay();
+            // this.weixinpay();
+            this.requestPolymerPayment();
           } else {
             swan.showToast({
               title: data.errmsg,
@@ -201,6 +196,49 @@ Page({
         }
       });
     }
+  },
+  // 从后台获取百度支付参数
+  requestPolymerPayment() {
+    let that = this;
+    swan.request({
+      url: 'https://mbd.baidu.com/ma/nuomi/createorder',
+      success: res => {
+        let data = res.data;
+        if (data.errno == 0) {
+          that.setData({ baiduPayParams: data });
+        } else {
+          console.log('create order err', data);
+          return;
+        }
+        that.baiduPay();
+      },
+      fail: err => {
+        swan.showToast({
+          title: '订单创建失败'
+        });
+        console.log('create order fail', err);
+      }
+    });
+  },
+  // 调用百度支付接口
+  baiduPay: function () {
+    swan.requestPolymerPayment({
+      orderInfo: this.data.baiduPayParams.data,
+      bannedChannels: '',
+      success: res => {
+        this.setData({ hiddenModal: true });
+        swan.showToast({
+          title: '支付成功',
+          icon: 'success',
+          duration: 1500
+        });
+      },
+      fail: err => {
+        swan.showToast({
+          title: err.errMsg
+        });
+      }
+    });
   },
   //调起支付签名
   //注：key为商户平台设置的密钥key

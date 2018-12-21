@@ -108,6 +108,9 @@ Page({
     swan.setNavigationBarTitle({
       title: '我'
     });
+    let result = swan.isLoginSync();
+    this.setData({isLogin: result.isLogin});
+    swan.setStorageSync('isLogin', result.isLogin);
     //绑定及解绑刷新页面
     if (this.data.refresh == 1) {
       courseid = swan.getStorageSync('courseid');

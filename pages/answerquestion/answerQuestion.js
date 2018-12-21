@@ -136,11 +136,29 @@ Page({
     })
   },
   answerQuestionTap: function (event) {
-    var index = event.currentTarget.dataset.index;
-    // console.log('../me/answerQuestions/answerQuestions?courseid=' + this.data.answerQuestionList[index].courseid)
-    swan.navigateTo({
-      url: '../me/answerQuestions/answerQuestions?courseid=' + this.data.answerQuestionList[index].courseid,
-    })
+    let index = event.currentTarget.dataset.index;
+    let isLogin = swan.getStorageSync('isLogin');
+    let wx_openid = swan.getStorageSync('wx_openid');
+    let wx_session_key = swan.getStorageSync('wx_session_key');
+    if (isLogin) {
+      if (wx_openid == "" || wx_session_key == "") {
+        swan.showModal({
+          title: '提示',
+          content: '请先授权登录',
+          showCancel: false
+        });
+      } else {
+        swan.navigateTo({
+          url: '../me/answerQuestions/answerQuestions?courseid=' + this.data.answerQuestionList[index].courseid,
+        });
+      }
+    } else {
+      swan.showModal({
+        title: '提示',
+        content: '请先登录百度APP',
+        showCancel: false
+      });
+    }
   },
   parseTime: function (time) {
     var dd = parseInt(time / 60 / 60 / 24);

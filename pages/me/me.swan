@@ -1,71 +1,73 @@
 <!-- <import src="../navigation/navigation.wxml"/>
 <template is="navigation" data="{{navigation}}"></template> -->
 <view class="cell-container">
-  <view class="cell_br"></view>
-  <view class="cells cells_after_title">
-    <button class="cell cell_access" hover-class="cell_active" style="height:160rpx;" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">
-    <!-- <navigator url="account/account" class="cell cell_access" hover-class="cell_active" style="height: 80px;line-height: 80px;"> -->
+	<view class="cell_br"></view>
+	<view class="cells cells_after_title">
+		<button class="cell cell_access" hover-class="cell_active" style="height:160rpx;" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">
       <view class="cell_hd" style='width:120rpx;heigth:160rpx;'>
         <image src="{{headPortrait}}" style="width:100rpx;height:100rpx;border-radius:25rpx;margin-left:-80rpx;"></image>
       </view>
-      <block s-if="{{userinfo == ''}}">
-        <view style='margin-left:-400rpx;' class="cell_bd">{{username}}</view>
-        <view class="cell_ft cell_ft_in_access">个人信息</view>
+      <block s-if="isLogin">
+        <block s-if="{{userinfo == ''}}">
+          <view style='margin-left:-400rpx;' class="cell_bd">{{username}}</view>
+          <view class="cell_ft cell_ft_in_access">个人信息</view>
+        </block>
+        <block s-else>
+          <view class="linkman">{{userinfo.linkman}}</view>
+          <view class="username">用户名：{{userinfo.username}}</view>
+          <view class="cell_ft cell_ft_in_access type">{{mymembertype}}</view>
+        </block>
       </block>
       <block s-else>
-        <view class="linkman">{{userinfo.linkman}}</view>
-        <view class="username">用户名：{{userinfo.username}}</view>
-        <view class="cell_ft cell_ft_in_access type">{{mymembertype}}</view>
+        <view style="flex: 1;">请先登录百度APP</view>
       </block>
-
-    <!-- </navigator> -->
     </button>
-  </view>
+	</view>
 
 
-  <view class="cells_title">课程</view>
-  <view class="cells cells_after_title">
-    <block s-key="course" s-for="cell, groupindex in course">
-      <view data-hi="{{groupindex}}" bindtap="courseClick" class="cell cell_access" hover-class="cell_active">
-        <view class="cell_hd">
-          <image src="{{cell.icon}}"></image>
-        </view>
-        <block s-if="groupindex != 0 && gropindex != course.length">
-          <view class="cell_bd cell_border_top">{{cell.title}}</view>
-        </block>
-        <block s-else>
-          <view class="cell_bd">{{cell.title}}</view>
-        </block>
-        <view class="cell_ft cell_ft_in_access"></view>
-      </view>
-    </block>
+	<view class="cells_title">课程</view>
+	<view class="cells cells_after_title">
+		<block s-key="course" s-for="cell, groupindex in course">
+			<view data-hi="{{groupindex}}" bindtap="courseClick" class="cell cell_access" hover-class="cell_active">
+				<view class="cell_hd">
+					<image src="{{cell.icon}}"></image>
+				</view>
+				<block s-if="groupindex != 0 && gropindex != course.length">
+					<view class="cell_bd cell_border_top">{{cell.title}}</view>
+				</block>
+				<block s-else>
+					<view class="cell_bd">{{cell.title}}</view>
+				</block>
+				<view class="cell_ft cell_ft_in_access"></view>
+			</view>
+		</block>
 
-  </view>
+	</view>
 
 
-  <view class="cells_title">通用</view>
-  <view class="cells cells_after_title">
-    <block s-key="common" s-for="cell, groupindex in common">
-      <view data-hi="{{groupindex}}" bindtap="commonClick" class="cell cell_access" hover-class="cell_active">
-        <!-- <button open-type="contact">xxx</button> -->
-        <view class="cell_hd">
-          <image src="{{cell.icon}}"></image>
-        </view>
-        <block s-if="groupindex != 0 || groupindex == common.length">
-          <view class="cell_bd cell_border_top">
-            {{cell.title}}
-            <block s-if="groupindex == 1">
-               <!-- <button class="cs_button" open-type="contact" session-from="weapp">
+	<view class="cells_title">通用</view>
+	<view class="cells cells_after_title">
+		<block s-key="common" s-for="cell, groupindex in common">
+			<view data-hi="{{groupindex}}" bindtap="commonClick" class="cell cell_access" hover-class="cell_active">
+				<!-- <button open-type="contact">xxx</button> -->
+				<view class="cell_hd">
+					<image src="{{cell.icon}}"></image>
+				</view>
+				<block s-if="groupindex != 0 || groupindex == common.length">
+					<view class="cell_bd cell_border_top">
+						{{cell.title}}
+						<block s-if="groupindex == 1">
+							<!-- <button class="cs_button" open-type="contact" session-from="weapp">
                 <image class="cs_image" src="../images/cs.png"></image>
               </button>  -->
-            </block>
-          </view>
-        </block>
-        <block s-else>
-          <view class="cell_bd">{{cell.title}}</view>
-        </block>
-        <view class="cell_ft cell_ft_in_access"></view>
-      </view>
-    </block>
-  </view>
+						</block>
+					</view>
+				</block>
+				<block s-else>
+					<view class="cell_bd">{{cell.title}}</view>
+				</block>
+				<view class="cell_ft cell_ft_in_access"></view>
+			</view>
+		</block>
+	</view>
 </view>

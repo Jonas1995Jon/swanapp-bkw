@@ -53,6 +53,12 @@
 						<text>{{live.title}}</text>
 					</view>
 				</block>
+				<block s-else>
+					<view class="cell-learn-box-cell">
+						<image src="{{live.icon}}"></image>
+						<text>{{live.title}}</text>
+					</view>
+				</block>
 			</block>
 		</view>
 	</view>

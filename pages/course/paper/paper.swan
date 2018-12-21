@@ -332,7 +332,7 @@
             <block s-if="questionlistItem.answerCustom.knowledgepoint.videocode.length > 0">
               <view class='answer_area' bindtap='paperVideoPlay' data-index='{{questionindex}}'>
                 <view class='answer_area_tit'>视频讲解</view>
-                <image class='answer_video' mode='widthFix' src='../../../../image/video/play_icon.png'></image>
+                <image class='answer_video' mode='widthFix' src='../../../image/video/play_icon.png'></image>
               </view>
             </block>
 

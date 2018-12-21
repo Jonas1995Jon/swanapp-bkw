@@ -217,7 +217,7 @@ Page({
           console.log('create order err', data);
           return;
         }
-        that.bauduPay();
+        that.baiduPay();
       },
       fail: err => {
         swan.showToast({
@@ -228,7 +228,7 @@ Page({
     });
   },
   // 调用百度支付接口
-  bauduPay: function () {
+  baudiPay: function () {
     swan.requestPolymerPayment({
       orderInfo: this.data.baiduPayParams.data,
       bannedChannels: '',

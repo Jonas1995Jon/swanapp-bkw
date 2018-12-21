@@ -8,6 +8,9 @@ Page {
   overflow-x: hidden;
   overflow-y: auto;
 }
+body {
+  background: #f0eff4;
+}
 .cell-learn{
   width: 750rpx;
 }

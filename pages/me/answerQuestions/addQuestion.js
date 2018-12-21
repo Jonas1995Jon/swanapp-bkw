@@ -168,7 +168,7 @@ Page({
         courseid: courseid,
         content: this.data.textareaStr,
         title: title,
-        problem_attachment: '',
+        problem_attachment: problem_attachment,
         iswechat: 0
       },
       success: res => {
@@ -243,8 +243,12 @@ Page({
     var that = this;
     swan.uploadFile({
       url: 'https://api3.cnbkw.com/appad/uploadfiletooss',
-      filePath: that.data.tempFilePaths[tempFileIndex], //图片路径，如tempFilePaths[0]
-      name: 'image',
+      filePath: that.data.tempFilePaths[tempFileIndex],//图片路径，如tempFilePaths[0]
+      name: 'image',      
+      // header: {
+      //   "Content-Type": "multipart/form-data",
+      //   "fileext":"png"        
+      // },
       success: function (res) {
         var data = res.data;
         if (data) {

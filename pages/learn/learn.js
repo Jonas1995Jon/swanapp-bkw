@@ -658,7 +658,7 @@ Page({
           liveArrs.push({
             icon: '',
             title: '',
-            show: true
+            show: false
           });
         }
       }
