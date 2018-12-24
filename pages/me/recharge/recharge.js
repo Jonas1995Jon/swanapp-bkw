@@ -228,7 +228,7 @@ Page({
     });
   },
   // 调用百度支付接口
-  baudiPay: function () {
+  baiduPay: function () {
     swan.requestPolymerPayment({
       orderInfo: this.data.baiduPayParams.data,
       bannedChannels: '',

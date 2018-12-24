@@ -94,6 +94,7 @@ Page({
     this.mymembertype();
     var bk_userinfo = swan.getStorageSync('bk_userinfo');
     this.setData({ userinfo: bk_userinfo });
+    this.checkSystemOS();
   },
 
   /**
@@ -109,7 +110,7 @@ Page({
       title: '我'
     });
     let result = swan.isLoginSync();
-    this.setData({isLogin: result.isLogin});
+    this.setData({ isLogin: result.isLogin });
     swan.setStorageSync('isLogin', result.isLogin);
     //绑定及解绑刷新页面
     if (this.data.refresh == 1) {
@@ -272,15 +273,10 @@ Page({
       url: 'https://openapi.baidu.com/nalogin/getSessionKeyByCode?code=' + code + '&client_id=' + getApp().globalData.sh_key + '&sk=' + getApp().globalData.appsecret,
       success: res => {
         var data = res.data;
-        console.log(data);
         swan.setStorageSync('wx_openid', data.openid);
         swan.setStorageSync('wx_session_key', data.session_key);
-        if (data.unionid == undefined) {
-          this.setData({ session_key: data.session_key });
-          this.setData({ code: code });
-        } else {
-          swan.setStorageSync('wx_unionid', data.unionid);
-        }
+        this.setData({ session_key: data.session_key });
+        this.setData({ code: code });
         //判断缓存里是否已经存在userinfo
         var userinfo = swan.getStorageSync('userinfo');
         if (userinfo != "") {
@@ -518,6 +514,24 @@ Page({
           swan.setStorageSync('userinfo', userinfo);
           swan.setStorageSync('wx_unionid', data.unionid);
           request.request_thirdauth(0);
+        }
+      }
+    });
+  },
+  checkSystemOS: function () {
+    var that = this;
+    swan.getSystemInfo({
+      success: function (res) {
+        console.log(res);
+        that.setData({
+          systemInfo: res
+        });
+        if (res.platform == "devtools") {
+          that.setData({ "mobileOS": "devtools" });
+        } else if (res.platform == "ios") {
+          that.setData({ "mobileOS": "ios" });
+        } else if (res.platform == "android") {
+          that.setData({ "mobileOS": "android" });
         }
       }
     });
