@@ -404,6 +404,7 @@ Page({
     var question = JSON.stringify(this.data.paperHistory);
     // question = question.replace('%', '');
     var url = '../studyPage/studyPage?unitid=' + this.data.unitid + '&paperid=' + this.data.paperHistory.paperid + '&question=' + question + '&learnType=' + this.data.learnType + '&history=2' + '&paperTitle=' + this.data.paperHistory.unitname + '&parsingType=2';
+    url = url.replace(/%/g, '%25');
     swan.navigateTo({
       url: encodeURI(url)
     });
