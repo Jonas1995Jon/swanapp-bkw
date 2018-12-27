@@ -45,6 +45,7 @@ Page({
     this.setData({ uid: uid });
     var orderid = options.orderid;
     this.setData({ orderid: orderid });
+    this.setData({questionCourseid: options.questionCourseid});
     categoryid = swan.getStorageSync('categoryid');
     courseid = swan.getStorageSync('courseid');
   },
@@ -148,7 +149,7 @@ Page({
   //有问必答_新建工单
   addQuestion: function () {
     var categoryid = swan.getStorageSync('categoryid');
-    var courseid = swan.getStorageSync('courseid');
+    var courseid = this.data.questionCourseid;
     var textareaStr = this.data.textareaStr;
     var title = textareaStr.substring(0, 20);
     var problem_attachment = '';

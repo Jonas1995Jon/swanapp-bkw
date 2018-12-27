@@ -110,7 +110,7 @@ Page({
     }
   },
   addQuestionClick: function () {
-    var url = 'addQuestion';
+    var url = 'addQuestion?questionCourseid=' + this.data.questionCourseid;
     swan.navigateTo({
       url: url
     });
@@ -176,9 +176,12 @@ Page({
               questionFinishList.push(data.list[i]);
             }
           }
-          this.setData({ questionIngList: questionIngList });
-          this.setData({ questionFinishList: questionFinishList });
-          this.setData({ questionList: data.list });
+          this.setData({
+            questionIngList: questionIngList,
+            questionFinishList: questionFinishList,
+            questionList: data.list
+          });
+          swan.setStorageSync('coursename', data.list[0].courseName);
         } else {
           common.showToast({
             title: data.errmsg
