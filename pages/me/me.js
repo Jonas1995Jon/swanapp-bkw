@@ -44,10 +44,12 @@ Page({
     common: [{
       icon: '../../image/me/me_switch.png',
       title: '切换考试'
-    }, {
-      icon: '../../image/me/me_contact.png',
-      title: '客服微信'
-    }, {
+    },
+    // {
+    //   icon: '../../image/me/me_contact.png',
+    //   title: '客服微信'
+    // },
+    {
       icon: '../../image/me/me_tell.png',
       title: '联系客服'
     }],
@@ -329,9 +331,9 @@ Page({
         });
         break;
       case 1:
-        swan.navigateTo({
-          url: 'wechatService/wechatService'
-        });
+        // swan.navigateTo({
+        //   url: 'wechatService/wechatService'
+        // });
         break;
       case 2:
         that.calling();
